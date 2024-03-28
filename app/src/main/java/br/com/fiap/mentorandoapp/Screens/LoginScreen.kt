@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Components.FormOutlineComponent
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
+import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 
 @Composable
@@ -50,6 +52,7 @@ fun LoginScreen(
                 text = "LOGIN",
                 fontSize = 24.sp,
                 color = Verde3,
+                fontWeight = FontWeight.Bold, // Adiciona essa linha para tornar o texto em negrito
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.CenterHorizontally)
@@ -80,7 +83,7 @@ fun LoginScreen(
                     // Chame a função de login passando email e senha
                     onLogin(email, password)
                     // Navegue para a próxima tela após o login
-                    navController.navigate("MenuScreen")
+                    navController.navigate("MatchScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier
@@ -93,39 +96,28 @@ fun LoginScreen(
                     color = Verde1
                 )
             }
-        }
-        // Botão de navegação
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-                .background(Brush.linearGradient(colors = listOf(Verde3, Verde5))),
-            horizontalArrangement = Arrangement.SpaceBetween, // Espaça os itens uniformemente
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Voltar",
-                color = Verde1,
-                fontSize = 16.sp,
+            // Botão de navegação (Voltar)
+            Row(
                 modifier = Modifier
-                    .padding(start = 10.dp)
-                    .clickable {
-                        // Navegue de volta para a tela de cadastro
-                        navController.navigate("CadastroScreen")
-                    }
-            )
-            Text(
-                text = "Cadastrar",
-                color = Verde1,
-                fontSize = 16.sp,
-                modifier = Modifier
-                    .padding(end = 10.dp) // Espaço à direita
-                    .clickable {
-                        // Navegue para a tela de cadastro
-                        navController.navigate("CadastroScreen")
-                    }
-            )
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(vertical = 8.dp), // Adiciona padding vertical
+                horizontalArrangement = Arrangement.Center, // Centraliza o botão
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Voltar",
+                    color = Verde4,
+                    fontSize = 16.sp,
+                    modifier = Modifier
+                        .clickable {
+                            // Navegue de volta para a tela de cadastro
+                            navController.navigate("BemVindoScreen")
+                        }
+                )
+            }
         }
+
     }
 }
 

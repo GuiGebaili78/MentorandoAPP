@@ -23,7 +23,8 @@ import br.com.fiap.mentorandoapp.Screens.CadastroAprendizScreen
 import br.com.fiap.mentorandoapp.Screens.CadastroMentorScreen
 import br.com.fiap.mentorandoapp.Screens.CadastroScreen
 import br.com.fiap.mentorandoapp.Screens.MenuScreen
-import br.com.fiap.mentorandoapp.Screens.PerfilMentorScreen
+import br.com.fiap.mentorandoapp.Screens.PerfilMentorCard
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,18 +78,20 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(route = "PerfilMentorScreen") {
-                            PerfilMentorScreen(
-                                nome = "", // Preencha com os dados do perfil do mentor
-                                areasInteresse = "",
-                                formacaoAcademica = "",
-                                nivelExperiencia = "",
-                                objetivosAprendizagem = "",
-                                disponibilidade = "",
-                                localizacao = "",
-                                contato = "",
-                                navController = navController // Passe o NavController
+                            PerfilMentorCard(
+                                nome = "Nome do Mentor",
+                                areasInteresse = "Áreas de Interesse do Mentor",
+                                formacaoAcademica = "Formação Acadêmica do Mentor",
+                                nivelExperiencia = "Nível de Experiência do Mentor",
+                                objetivosAprendizagem = "Objetivos de Aprendizagem do Mentor",
+                                disponibilidade = "Disponibilidade do Mentor",
+                                localizacao = "Localização do Mentor",
+                                contato = "Contato do Mentor",
+                                fotoResId = R.drawable.baseline_person_24,
+                                navController = navController
                             )
                         }
+
                         composable(route = "MenuScreen") {
                             MenuScreen(navController)
                         }
