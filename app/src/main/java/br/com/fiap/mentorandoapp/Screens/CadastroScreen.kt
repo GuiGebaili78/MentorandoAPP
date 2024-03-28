@@ -97,12 +97,12 @@ fun CadastroScreen(navController: NavController) {
         ) {
             Text(
                 text = "Voltar",
-                color = Color.White,
+                color = Verde1,
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(start = 10.dp)
                     .clickable {
-                        navController.navigate("CadastroScreen")
+                        navController.navigate("BemVindoScreen")
                     }
             )
         }

@@ -1,5 +1,7 @@
 package br.com.fiap.mentorandoapp
 
+import LoginScreen
+import PerfilAprendizScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,6 +23,7 @@ import br.com.fiap.mentorandoapp.Screens.CadastroAprendizScreen
 import br.com.fiap.mentorandoapp.Screens.CadastroMentorScreen
 import br.com.fiap.mentorandoapp.Screens.CadastroScreen
 import br.com.fiap.mentorandoapp.Screens.MenuScreen
+import br.com.fiap.mentorandoapp.Screens.PerfilMentorScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,12 +39,20 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = "BemVindoScreen",
+                        startDestination = "BemVindoScreen", // Defina uma rota válida como startDestination
                         enterTransition = { slideInHorizontally(animationSpec = tween(durationMillis = 200)) }
                     ) {
 
                         composable(route = "BemVindoScreen") {
                             BemVindoScreen(navController)
+                        }
+                        composable(route = "LoginScreen") {
+                            LoginScreen(
+                                onLogin = { email, password ->
+                                    navController.navigate("MatchScreen")
+                                },
+                                navController = navController
+                            )
                         }
                         composable(route = "CadastroScreen") {
                             CadastroScreen(navController)
@@ -51,6 +62,32 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = "CadastroAprendizScreen") {
                             CadastroAprendizScreen(navController)
+                        }
+                        composable(route = "PerfilAprendizScreen") {
+                            PerfilAprendizScreen(
+                                nome = "", // Preencha com os dados do perfil do aprendiz
+                                areasInteresse = "",
+                                formacaoAcademica = "",
+                                nivelExperiencia = "",
+                                objetivosAprendizagem = "",
+                                disponibilidade = "",
+                                localizacao = "",
+                                contato = "",
+                                navController = navController // Passe o NavController
+                            )
+                        }
+                        composable(route = "PerfilMentorScreen") {
+                            PerfilMentorScreen(
+                                nome = "", // Preencha com os dados do perfil do mentor
+                                areasInteresse = "",
+                                formacaoAcademica = "",
+                                nivelExperiencia = "",
+                                objetivosAprendizagem = "",
+                                disponibilidade = "",
+                                localizacao = "",
+                                contato = "",
+                                navController = navController // Passe o NavController
+                            )
                         }
                         composable(route = "MenuScreen") {
                             MenuScreen(navController)

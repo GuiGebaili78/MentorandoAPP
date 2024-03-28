@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,6 +29,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Components.FormOutlineComponent
 import br.com.fiap.mentorandoapp.R
+import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import androidx.compose.ui.unit.dp as dp1
@@ -39,17 +42,26 @@ fun CadastroMentorScreen(navController: NavController) {
 
     Column(
         modifier = Modifier
-            .fillMaxSize(), // Preenche toda a tela
-        verticalArrangement = Arrangement.Center, // Centraliza horizontalmente
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Column( // Coluna com scroll vertical
             modifier = Modifier
-                .weight(1f) // Ocupa todo o espaço disponível
-                .verticalScroll( // Habilita scroll vertical
-                    state = rememberScrollState() // Lembra o estado do scroll
+                .weight(1f)
+                .verticalScroll(
+                    state = rememberScrollState()
                 )
         ){
+            Text(
+                text = "Cadastro de Mentores",
+                fontSize = 24.sp,
+                color = Verde3,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .align(Alignment.CenterHorizontally)
+
+            )
 
             FormOutlineComponent(
                 value = "",
@@ -168,17 +180,27 @@ fun CadastroMentorScreen(navController: NavController) {
                 .fillMaxWidth()
                 .height(50.dp)
                 .background(Brush.linearGradient(colors = listOf(Verde3, Verde5))),
-            horizontalArrangement = Arrangement.Start,
+            horizontalArrangement = Arrangement.SpaceBetween, // Espaça os itens uniformemente
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = "Voltar",
-                color = Color.White,
+                color = Verde1,
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(start = 10.dp)
                     .clickable {
                         navController.navigate("CadastroScreen")
+                    }
+            )
+            Text(
+                text = "Cadastrar",
+                color = Verde1,
+                fontSize = 16.sp,
+                modifier = Modifier
+                    .padding(end = 10.dp) // Espaço à direita
+                    .clickable {
+                        navController.navigate("")
                     }
             )
         }

@@ -4,8 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -65,7 +67,25 @@ fun BemVindoScreen(navController: NavController) {
             contentScale = ContentScale.Fit
         )
 
-        // Botão "SEGUIR"
+        // Botão "Login"
+        Button(
+            onClick = {
+                navController.navigate("LoginScreen")
+            },
+            colors = ButtonDefaults.buttonColors(Verde5),
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+
+                .width(250.dp)
+        ) {
+            Text(
+                text = "LOGIN",
+                fontSize = 20.sp,
+                color = Verde1
+            )
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        // Botão "Cadastro"
         Button(
             onClick = {
                 navController.navigate("CadastroScreen")
@@ -77,7 +97,7 @@ fun BemVindoScreen(navController: NavController) {
                 .width(250.dp)
         ) {
             Text(
-                text = "COMEÇAR",
+                text = "CADASTRO",
                 fontSize = 20.sp,
                 color = Verde1
             )
