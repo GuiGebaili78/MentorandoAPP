@@ -3,6 +3,8 @@ package br.com.fiap.mentorandoapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -10,8 +12,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
 import br.com.fiap.mentorandoapp.Screens.BemVindoScreen
 import br.com.fiap.mentorandoapp.ui.theme.MentorandoAPPTheme
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import br.com.fiap.mentorandoapp.Screens.CadastroAprendizScreen
+import br.com.fiap.mentorandoapp.Screens.CadastroMentorScreen
+import br.com.fiap.mentorandoapp.Screens.CadastroScreen
+import br.com.fiap.mentorandoapp.Screens.MenuScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +32,31 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    BemVindoScreen()
+                    val navController = rememberNavController()
+
+                    NavHost(
+                        navController = navController,
+                        startDestination = "BemVindoScreen",
+                        enterTransition = { slideInHorizontally(animationSpec = tween(durationMillis = 200)) }
+                    ) {
+
+                        composable(route = "BemVindoScreen") {
+                            BemVindoScreen(navController)
+                        }
+                        composable(route = "CadastroScreen") {
+                            CadastroScreen(navController)
+                        }
+                        composable(route = "CadastroMentorScreen") {
+                            CadastroMentorScreen(navController)
+                        }
+                        composable(route = "CadastroAprendizScreen") {
+                            CadastroAprendizScreen(navController)
+                        }
+                        composable(route = "MenuScreen") {
+                            MenuScreen(navController)
+                        }
+
+                    }
                 }
             }
         }

@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.dp
 import br.com.fiap.mentorandoapp.R
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
@@ -33,11 +35,8 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
-
-
-
 @Composable
-fun BemVindoScreen() {
+fun BemVindoScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -69,7 +68,7 @@ fun BemVindoScreen() {
         // Botão "SEGUIR"
         Button(
             onClick = {
-                //navController.navigate("")
+                navController.navigate("CadastroScreen")
             },
             colors = ButtonDefaults.buttonColors(Verde5),
             modifier = Modifier
@@ -90,7 +89,7 @@ fun BemVindoScreen() {
 @Preview(showBackground = true)
 @Composable
 fun BemVindoScreenPreview() {
-    BemVindoScreen()
+    BemVindoScreen(navController = rememberNavController())
 }
 
 
