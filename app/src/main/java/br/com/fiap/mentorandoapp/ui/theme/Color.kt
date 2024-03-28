@@ -14,10 +14,10 @@ val Pink40 = Color(0xFF7D5260)
 
 //MentorandoAPP paleta de cores
 
-val color1 = Color(0xFFC5F1FA)
-val color2 = Color(0xFFAFCACF)
-val color3 = Color(0xFF709CA5)
-val color4 = Color(0xFF3E707A)
-val color5 = Color(0xFF1C4952)
-val color6 = Color(0xFF0F3138)
+val Verde1 = Color(0xFFC5F1FA)
+val Verde2 = Color(0xFFAFCACF)
+val Verde3 = Color(0xFF709CA5)
+val Verde4 = Color(0xFF3E707A)
+val Verde5 = Color(0xFF1C4952)
+val Verde6 = Color(0xFF0F3138)
 
