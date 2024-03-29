@@ -1,9 +1,11 @@
-package br.com.fiap.mentorandoapp.Screens
+package br.com.fiap.mentorandoapp.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,15 +24,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.mentorandoapp.Components.FormOutlineComponent
+import br.com.fiap.mentorandoapp.components.FormOutlineComponent
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import androidx.compose.ui.unit.dp as dp1
 
 
+
+
 @Composable
-fun CadastroAprendizScreen(navController: NavController) {
+fun CadastroMentorScreen(navController: NavController) {
 
     Column(
         modifier = Modifier
@@ -38,7 +42,7 @@ fun CadastroAprendizScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
+        Column( // Coluna com scroll vertical
             modifier = Modifier
                 .weight(1f)
                 .verticalScroll(
@@ -46,7 +50,7 @@ fun CadastroAprendizScreen(navController: NavController) {
                 )
         ){
             Text(
-                text = "Cadastro de Aprendizes",
+                text = "Cadastro de Mentores",
                 fontSize = 24.sp,
                 color = Verde3,
                 modifier = Modifier
@@ -67,7 +71,18 @@ fun CadastroAprendizScreen(navController: NavController) {
                     //jurosScreenViewModel.onTempoChanged(it)
                 }
             )
-
+            FormOutlineComponent(
+                value = "",
+                placeholder = "Detalhe sua experiência",
+                label = "Experiência Profissional",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp1),
+                keyboardType = KeyboardType.Text,
+                atualizarValor = {
+                    //jurosScreenViewModel.onTempoChanged(it)
+                }
+            )
             FormOutlineComponent(
                 value = "",
                 placeholder = "Tópicos de interesse",
@@ -94,20 +109,8 @@ fun CadastroAprendizScreen(navController: NavController) {
             )
             FormOutlineComponent(
                 value = "",
-                placeholder = "Nível de experiência atual",
-                label = "Nível de Esperiência",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp1),
-                keyboardType = KeyboardType.Text,
-                atualizarValor = {
-                    //jurosScreenViewModel.onTempoChanged(it)
-                }
-            )
-            FormOutlineComponent(
-                value = "",
-                placeholder = "Detalhe seus objetivos",
-                label = "Objetivos de Aprendizagem",
+                placeholder = "Certificações profissionais ou acadêmicas",
+                label = "Certificações",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp1),
@@ -140,7 +143,18 @@ fun CadastroAprendizScreen(navController: NavController) {
                     //jurosScreenViewModel.onTempoChanged(it)
                 }
             )
-
+            FormOutlineComponent(
+                value = "",
+                placeholder = "Breve biografia",
+                label = "Biografia",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp1),
+                keyboardType = KeyboardType.Text,
+                atualizarValor = {
+                    //jurosScreenViewModel.onTempoChanged(it)
+                }
+            )
             FormOutlineComponent(
                 value = "",
                 placeholder = "Digite seus contatos",
@@ -153,6 +167,7 @@ fun CadastroAprendizScreen(navController: NavController) {
                     //jurosScreenViewModel.onTempoChanged(it)
                 }
             )
+
 
         }
         // Botão de navegação
@@ -185,14 +200,16 @@ fun CadastroAprendizScreen(navController: NavController) {
                     }
             )
         }
-
     }
+
+
+
 }
 
 
 @Preview (showBackground = true, showSystemUi = true)
 @Composable
-fun CadastroAprendizScreenPreview() {
-    CadastroAprendizScreen(navController = rememberNavController())
+fun CadastroMentorScreenPreview() {
+    CadastroMentorScreen(navController = rememberNavController())
 
 }

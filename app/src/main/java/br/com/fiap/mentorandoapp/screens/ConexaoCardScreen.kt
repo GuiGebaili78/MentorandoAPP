@@ -1,4 +1,4 @@
-package br.com.fiap.mentorandoapp.Screens
+package br.com.fiap.mentorandoapp.screens
 
 import BottomNavigation
 import androidx.compose.foundation.Image
@@ -171,11 +171,11 @@ fun ConexaoCardScreenPreview() {
     ConexaoCardScreen(
         nome = "Nome do Mentor ou Aprendiz",
         areasInteresse = "Áreas de Interesse",
-        formacaoAcademica = "Formação Acadêmica",
-        nivelExperiencia = "Nível de Experiência",
-        objetivosAprendizagem = "Objetivos de Aprendizagem",
+        formacaoAcademica = "Formação Acadêmiccalkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkka",
+        nivelExperiencia = "Nível de Experiênccalkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkia",
+        objetivosAprendizagem = "Objecalkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkktivos de Aprendizagem",
         disponibilidade = "Disponibilidade",
-        localizacao = "Localização",
+        localizacao = "Localkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkização",
         contato = "Contato",
         fotoResId = R.drawable.baseline_person_24,
         navController = rememberNavController() // Adicionei rememberNavController() para o preview

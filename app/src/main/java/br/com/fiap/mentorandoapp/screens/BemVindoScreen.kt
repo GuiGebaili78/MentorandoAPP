@@ -1,12 +1,10 @@
-package br.com.fiap.mentorandoapp.Screens
+package br.com.fiap.mentorandoapp.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -31,11 +28,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
-import br.com.fiap.mentorandoapp.ui.theme.Verde2
-import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
-import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 @Composable
 fun BemVindoScreen(navController: NavController) {

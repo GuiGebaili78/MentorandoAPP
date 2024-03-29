@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.mentorandoapp.Screens.*
+import br.com.fiap.mentorandoapp.screens.*
 import androidx.compose.material3.Text // Adicionando import para Text
 import br.com.fiap.mentorandoapp.ui.theme.MentorandoAPPTheme
 

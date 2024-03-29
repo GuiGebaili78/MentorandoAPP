@@ -1,4 +1,4 @@
-package br.com.fiap.mentorandoapp.Screens
+package br.com.fiap.mentorandoapp.screens
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController

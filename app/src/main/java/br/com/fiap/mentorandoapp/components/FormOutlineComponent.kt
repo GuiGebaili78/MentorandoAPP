@@ -1,4 +1,4 @@
-package br.com.fiap.mentorandoapp.Components
+package br.com.fiap.mentorandoapp.components
 
 
 
@@ -10,14 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 
 
 @Composable
 fun FormOutlineComponent(
-
     value: String,
     placeholder: String,
     label: String,
@@ -28,7 +26,6 @@ fun FormOutlineComponent(
     OutlinedTextField(
         value = value,
         onValueChange = atualizarValor,
-
         modifier = modifier
             .fillMaxWidth()
             .padding(top = 16.dp),
@@ -41,5 +38,6 @@ fun FormOutlineComponent(
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType)
     )
 }
+
 
 
