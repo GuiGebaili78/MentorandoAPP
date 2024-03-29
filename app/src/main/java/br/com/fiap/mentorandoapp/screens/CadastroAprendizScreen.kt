@@ -38,8 +38,6 @@ import br.com.fiap.mentorandoapp.components.FormOutlineComponent
 
 
 
-
-
 @Composable
 fun CadastroAprendizScreen(navController: NavController) {
 
@@ -220,7 +218,7 @@ fun CadastroAprendizScreen(navController: NavController) {
                 color = Verde1,
                 fontSize = 16.sp,
                 modifier = Modifier
-                    .padding(end = 10.dp) // Espaço à direita
+                    .padding(end = 10.dp)
                     .clickable {
                         val aprendiz = AprendizModel(
                             nome = nomeState.value,
