@@ -55,12 +55,7 @@ fun PerfilMentorCard(
             .shadow(4.dp, shape = RoundedCornerShape(16.dp))
             .padding(16.dp)
     ) {
-        Text(
-            text = "Texto",
-            fontSize = 20.sp,
-            color = Verde6,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
+
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -85,14 +80,14 @@ fun PerfilMentorCard(
             )
         }
 
-        PerfilItem(title = "Nome", value = nome)
-        PerfilItem(title = "Áreas de Interesse", value = areasInteresse)
-        PerfilItem(title = "Formação Acadêmica", value = formacaoAcademica)
-        PerfilItem(title = "Nível de Experiência", value = nivelExperiencia)
-        PerfilItem(title = "Objetivos de Aprendizagem", value = objetivosAprendizagem)
-        PerfilItem(title = "Disponibilidade", value = disponibilidade)
-        PerfilItem(title = "Localização", value = localizacao)
-        PerfilItem(title = "Contato", value = contato)
+        PerfilMentorItem(title = "Nome", value = nome)
+        PerfilMentorItem(title = "Áreas de Interesse", value = areasInteresse)
+        PerfilMentorItem(title = "Formação Acadêmica", value = formacaoAcademica)
+        PerfilMentorItem(title = "Nível de Experiência", value = nivelExperiencia)
+        PerfilMentorItem(title = "Objetivos de Aprendizagem", value = objetivosAprendizagem)
+        PerfilMentorItem(title = "Disponibilidade", value = disponibilidade)
+        PerfilMentorItem(title = "Localização", value = localizacao)
+        PerfilMentorItem(title = "Contato", value = contato)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -104,14 +99,7 @@ fun PerfilMentorCard(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Button(
-            onClick = { /* TODO: Ação do botão esquerdo */ },
-            colors = ButtonDefaults.buttonColors(
-                contentColor = Color.White // Cor do conteúdo (texto ou ícone) do botão esquerdo
-            )
-        ) {
-            // Ícone ou texto do botão esquerdo
-        }
+
         Spacer(modifier = Modifier.width(8.dp)) // Espaço entre os botões
         Button(
             onClick = { /* Ação do botão central */ },
@@ -123,7 +111,7 @@ fun PerfilMentorCard(
             ),
             content = {
                 Text(
-                    text = "MATCH",
+                    text = "Alterar",
                     fontWeight = FontWeight.Bold, // Texto em negrito
                     fontSize = 16.sp // Tamanho da fonte
                 )
@@ -131,19 +119,12 @@ fun PerfilMentorCard(
         )
         Spacer(modifier = Modifier
             .width(8.dp)) // Espaço entre os botões
-        Button(
-            onClick = { /* TODO: Ação do botão direito */ },
-            colors = ButtonDefaults.buttonColors(
-                contentColor = Color.White // Cor do conteúdo (texto ou ícone) do botão direito
-            )
-        ) {
-            // Ícone ou texto do botão direito
-        }
+
     }
 }
 
 @Composable
-fun PerfilItem(title: String, value: String) {
+fun PerfilMentorItem(title: String, value: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
