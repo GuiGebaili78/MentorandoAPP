@@ -48,11 +48,10 @@ fun ConexaoCardScreen(
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 25.dp)
+                .padding(horizontal = 2.dp)
                 .fillMaxWidth()
                 .fillMaxHeight(0.75f)
                 .verticalScroll(rememberScrollState())
-                .padding(vertical = 20.dp)
                 .background(color = Color.White, shape = RoundedCornerShape(16.dp))
                 .shadow(4.dp, shape = RoundedCornerShape(16.dp))
                 .padding(16.dp)
@@ -66,39 +65,45 @@ fun ConexaoCardScreen(
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.SpaceAround,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "Perfil",
-                        fontSize = 24.sp,
-                        color = Verde6,
-                        modifier = Modifier.align(Alignment.CenterVertically)
-                    )
+                    // Imagem
                     Image(
                         painter = painterResource(id = fotoResId),
                         contentDescription = "Foto do mentor",
                         modifier = Modifier
                             .size(80.dp)
-                            .clip(shape = CircleShape)
-                            .align(Alignment.Top),
+                            .clip(shape = CircleShape),
                         contentScale = ContentScale.Crop
                     )
+                    Spacer(modifier = Modifier.width(16.dp)) // Adiciona espaçamento entre a imagem e o nome
+
+                    // Column para centralizar o nome abaixo da imagem
+                    Column(
+                        modifier = Modifier
+                            .padding(top = 8.dp) // Adiciona padding superior para ajustar a posição vertical
+                    ) {
+                        Text(
+                            text = nome,
+                            fontSize = 20.sp,
+                            color = Color.Black,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
                 }
-                PerfilConexaoItem(title = "Nome", value = nome)
                 PerfilConexaoItem(title = "Áreas de Interesse", value = areasInteresse)
                 PerfilConexaoItem(title = "Formação Acadêmica", value = formacaoAcademica)
                 PerfilConexaoItem(title = "Nível de Experiência", value = nivelExperiencia)
-                PerfilConexaoItem(
-                    title = "Objetivos de Aprendizagem",
-                    value = objetivosAprendizagem
-                )
+                PerfilConexaoItem(title = "Objetivos de Aprendizagem", value = objetivosAprendizagem)
                 PerfilConexaoItem(title = "Disponibilidade", value = disponibilidade)
                 PerfilConexaoItem(title = "Localização", value = localizacao)
                 PerfilConexaoItem(title = "Contato", value = contato)
+
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
+
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier
@@ -169,13 +174,13 @@ fun PerfilConexaoItem(title: String, value: String) {
 @Composable
 fun ConexaoCardScreenPreview() {
     ConexaoCardScreen(
-        nome = "Nome do Mentor ou Aprendiz",
+        nome = "José da Silva",
         areasInteresse = "Áreas de Interesse",
-        formacaoAcademica = "Formação Acadêmiccalkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkka",
-        nivelExperiencia = "Nível de Experiênccalkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkia",
-        objetivosAprendizagem = "Objecalkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkktivos de Aprendizagem",
+        formacaoAcademica = "Formação Acadêmica",
+        nivelExperiencia = "Nível de Experiência",
+        objetivosAprendizagem = "Objetivos de Aprendizagem",
         disponibilidade = "Disponibilidade",
-        localizacao = "Localkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkização",
+        localizacao = "Localização",
         contato = "Contato",
         fotoResId = R.drawable.baseline_person_24,
         navController = rememberNavController() // Adicionei rememberNavController() para o preview
