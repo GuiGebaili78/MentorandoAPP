@@ -11,4 +11,13 @@ class AprendizRepository(context: Context) {
     fun salvar(aprendizModel: AprendizModel): Long {
         return db.salvar(aprendizModel)
     }
+
+    fun listarAprendizModel(): List<AprendizModel> {
+        return db.listarAprendizModel()
+    }
+
+    fun buscarAprendizModelPeloId(id: Int): AprendizModel {
+        return db.buscarAprendizModelPeloId(id)
+    }
 }
+

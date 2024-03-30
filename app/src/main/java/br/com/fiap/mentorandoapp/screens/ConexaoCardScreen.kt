@@ -26,9 +26,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
-import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import br.com.fiap.mentorandoapp.R
+import br.com.fiap.mentorandoapp.ui.theme.VerdeSim
+import br.com.fiap.mentorandoapp.ui.theme.VermelhoNao
 
 @Composable
 fun ConexaoCardScreen(
@@ -48,9 +49,9 @@ fun ConexaoCardScreen(
     ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 2.dp)
+                .padding(horizontal = 1.dp)
                 .fillMaxWidth()
-                .fillMaxHeight(0.75f)
+                .fillMaxHeight(0.85f)
                 .verticalScroll(rememberScrollState())
                 .background(color = Color.White, shape = RoundedCornerShape(16.dp))
                 .shadow(4.dp, shape = RoundedCornerShape(16.dp))
@@ -109,36 +110,39 @@ fun ConexaoCardScreen(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .padding(60.dp),
+                .padding(50.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Button(
-                onClick = { /* TODO: Ação do botão esquerdo */ },
-                colors = ButtonDefaults.buttonColors(Verde5),
-            ) {
-                // Ícone ou texto do botão esquerdo
-            }
-            Spacer(modifier = Modifier.width(8.dp))
+
+
             Button(
                 onClick = { /* Ação do botão central */ },
                 modifier = Modifier.weight(1f),
-                colors = ButtonDefaults.buttonColors(Verde5),
+                colors = ButtonDefaults.buttonColors(VermelhoNao),
                 content = {
                     Text(
-                        text = "MATCH",
+                        text = "NÃO",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp
+                    )
+                }
+            )
+            Spacer(modifier = Modifier.width(50.dp))
+            Button(
+                onClick = { /* Ação do botão central */ },
+                modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(VerdeSim),
+                content = {
+                    Text(
+                        text = "SIM",
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp
                     )
                 }
             )
             Spacer(modifier = Modifier.width(8.dp))
-            Button(
-                onClick = { /* TODO: Ação do botão direito */ },
-                colors = ButtonDefaults.buttonColors(Verde5),
-            ) {
-                // Ícone ou texto do botão direito
-            }
+
         }
         BottomNavigation(
             navController = navController,

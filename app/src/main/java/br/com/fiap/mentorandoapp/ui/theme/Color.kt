@@ -21,3 +21,6 @@ val Verde4 = Color(0xFF3E707A)
 val Verde5 = Color(0xFF1C4952)
 val Verde6 = Color(0xFF0F3138)
 
+
+val VerdeSim = Color(0xFF377E3A)
+val VermelhoNao = Color(0xFFC4193B)

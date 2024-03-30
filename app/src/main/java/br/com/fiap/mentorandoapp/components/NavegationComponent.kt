@@ -32,6 +32,12 @@ fun BottomNavigation(
         verticalAlignment = Alignment.CenterVertically
     ) {
         NavItem(
+            icon = R.drawable.back_24,
+            contentDescription = "Notificação",
+            route = "LoginScreen",
+            navController = navController
+        )
+        NavItem(
             icon = R.drawable.baseline_person_pin_24,
             contentDescription = "Perfil",
             route = "perfil",
@@ -43,6 +49,7 @@ fun BottomNavigation(
             route = "ConexaoCardScreen",
             navController = navController
         )
+
         NavItem(
             icon = R.drawable.baseline_notifications_24,
             contentDescription = "Notificação",

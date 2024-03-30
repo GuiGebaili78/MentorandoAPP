@@ -13,4 +13,14 @@ class MentorRepository(context: Context) {
     fun salvar(mentorModel: MentorModel): Long {
         return db.salvar(mentorModel)
     }
+
+    fun listarMentorModel(): List<MentorModel> {
+        return db.listarMentorModel()
+    }
+
+
+    fun buscarMentorModelPeloId(id: Int): MentorModel {
+        return db.buscarMentorModelPeloId(id)
+    }
+
 }
