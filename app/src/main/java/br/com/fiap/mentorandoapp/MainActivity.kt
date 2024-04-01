@@ -17,7 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.screens.*
-import androidx.compose.material3.Text // Adicionando import para Text
+import androidx.compose.material3.Text
 import br.com.fiap.mentorandoapp.ui.theme.MentorandoAPPTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                         composable(route = "LoginScreen") {
                             LoginScreen(
                                 onLogin = { email, password ->
-                                    navController.navigate("ConexaoCardScreen")
+                                    navController.navigate("CarrosselScreen")
                                 },
                                 navController = navController
                             )
@@ -89,19 +89,8 @@ class MainActivity : ComponentActivity() {
                         composable(route = "MenuScreen") {
                             MenuScreen(navController)
                         }
-                        composable(route = "ConexaoCardScreen") {
-                            ConexaoCardScreen(
-                                nome = "Nome do Mentor ou Aprendiz",
-                                areasInteresse = "Áreas de Interesse",
-                                formacaoAcademica = "Formação Acadêmica",
-                                nivelExperiencia = "Nível de Experiência",
-                                objetivosAprendizagem = "Objetivos de Aprendizagem",
-                                disponibilidade = "Disponibilidade",
-                                localizacao = "Localização",
-                                contato = "Contato",
-                                fotoResId = R.drawable.baseline_person_24,
-                                navController = navController
-                            )
+                        composable(route = "CarrosselScreen") {
+                            CarrosselScreen(navController)
                         }
                     }
                 }

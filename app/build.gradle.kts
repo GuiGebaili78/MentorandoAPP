@@ -71,6 +71,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
 
+    implementation ("androidx.viewpager2:viewpager2:1.0.0")
+
+
 
     // Room DEPENDENCIES
     implementation("androidx.room:room-runtime:2.6.1")

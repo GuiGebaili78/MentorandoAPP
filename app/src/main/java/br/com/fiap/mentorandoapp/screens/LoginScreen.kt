@@ -78,7 +78,7 @@ fun LoginScreen(
                     // Chame a função de login passando email e senha
                     onLogin(email, password)
                     // Navegue para a próxima tela após o login
-                    navController.navigate("ConexaoCardScreen")
+                    navController.navigate("CarrosselScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier
