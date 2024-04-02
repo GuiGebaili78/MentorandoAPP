@@ -73,7 +73,7 @@ fun PerfilItem(title: String, value: String) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PerfilAprendizScreenPreview() {
     PerfilAprendizScreen(
