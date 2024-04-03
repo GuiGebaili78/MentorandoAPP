@@ -35,10 +35,11 @@ fun CarrosselMentorScreen(
     }
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(0.2.dp)
         ) {
             mentors.ifEmpty {
                 Text(text = "Carregando mentores...")

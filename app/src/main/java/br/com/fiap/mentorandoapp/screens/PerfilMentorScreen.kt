@@ -38,14 +38,7 @@ fun PerfilMentorCard(
     navController: NavController,
     fotoResId: Int // Recurso de ID da imagem
 ) {
-    Row {
-        Text(
-            text = "Texto",
-            fontSize = 20.sp,
-            color = Verde6,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,33 +86,7 @@ fun PerfilMentorCard(
 
 
     }
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
 
-        Spacer(modifier = Modifier.width(8.dp)) // Espaço entre os botões
-        Button(
-            onClick = { /* Ação do botão central */ },
-            modifier = Modifier
-                .weight(1f)
-                .background(Verde2),
-            colors = ButtonDefaults.buttonColors(
-                contentColor = Color.White // Cor do conteúdo (texto ou ícone) do botão central
-            ),
-            content = {
-                Text(
-                    text = "Alterar",
-                    fontWeight = FontWeight.Bold, // Texto em negrito
-                    fontSize = 16.sp // Tamanho da fonte
-                )
-            }
-        )
-        Spacer(modifier = Modifier
-            .width(8.dp)) // Espaço entre os botões
-
-    }
 }
 
 @Composable

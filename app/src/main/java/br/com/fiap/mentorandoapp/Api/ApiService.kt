@@ -15,7 +15,7 @@ suspend fun fetchMentorsFromApi(): List<Mentor> {
         try {
             val client = OkHttpClient.Builder().build()
             val request = Request.Builder()
-                .url("https://660c75dd3a0766e85dbe2694.mockapi.io /api/ v1 /mentor")
+                .url("https://660c75dd3a0766e85dbe2694.mockapi.io/api/v1/mentor")
                 .build()
             val response = client.newCall(request).execute()
             val responseBody = response.body?.string()
@@ -36,6 +36,8 @@ suspend fun fetchMentorsFromApi(): List<Mentor> {
                 )
                 mentorList.add(mentor)
             }
+
+            Log.d("MentorApiteste", "Erro ao buscar mentoresteste: ${mentorList.toString()}")
             mentorList
         } catch (e: Exception) {
             Log.e("MentorApi", "Erro ao buscar mentores: ${e.message}")
