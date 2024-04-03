@@ -19,7 +19,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.fiap.mentorandoapp.model.Mentor
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import br.com.fiap.mentorandoapp.R
 import br.com.fiap.mentorandoapp.model.Aprendiz
@@ -66,9 +65,9 @@ fun AprendizCard(aprendiz: Aprendiz) {
         }
 
         AprendizItem(title = "FORMAÇÃO ACADÊMICA", value = aprendiz.formacao)
-        AprendizItem(title = "INTERESSES", value = aprendiz.interesse)
+        AprendizItem(title = "ÁREAS DE INTERESSE", value = aprendiz.interesse)
         AprendizItem(title = "OBJETIVOS", value = aprendiz.objetivo)
-        AprendizItem(title = "EXPERIÊNCIAS", value = aprendiz.experiencia)
+        AprendizItem(title = "NÍVEL DE EXPERIÊNCIA", value = aprendiz.experiencia)
         AprendizItem(title = "DISPONIBILIDADE", value = aprendiz.disponibilidade)
         AprendizItem(title = "LOCALIZAÇÃO", value = aprendiz.localizacao)
         AprendizItem(title = "CONTATO", value = aprendiz.contato)

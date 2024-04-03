@@ -99,7 +99,7 @@ fun CarrosselAprendizScreen(
                     Text(
                         text = "MATCH",
                         color = Verde1,
-                        fontSize = 18.sp
+                        fontSize = 28.sp
                     )
                 }
             )

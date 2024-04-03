@@ -27,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 @Composable
 fun CadastroScreen(navController: NavController) {
@@ -89,14 +90,14 @@ fun CadastroScreen(navController: NavController) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
+                .height(30.dp)
                 .background(Brush.linearGradient(colors = listOf(Verde3, Verde5))),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = "Voltar",
-                color = Verde1,
+                color = Verde6,
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(start = 10.dp)

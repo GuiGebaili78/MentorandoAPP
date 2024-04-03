@@ -1,8 +1,10 @@
 package br.com.fiap.mentorandoapp.screens
 
+import BottomNavigation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -86,27 +88,11 @@ fun BuscaScreen(navController: NavController) {
         }
 
         // Botão de navegação
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-                .background(Brush.linearGradient(colors = listOf(Verde3, Verde5))),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Voltar",
-                color = Verde1,
-                fontSize = 16.sp,
-                modifier = Modifier
-                    .padding(start = 10.dp)
-                    .clickable {
-                        navController.navigate("LoginScreen")
-                    }
-            )
+
+            BottomNavigation(navController = navController)
         }
     }
-}
+
 
 
 

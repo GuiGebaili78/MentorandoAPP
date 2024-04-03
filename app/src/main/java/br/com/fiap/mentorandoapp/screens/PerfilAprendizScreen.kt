@@ -1,10 +1,13 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -13,6 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 @Composable
 fun PerfilAprendizScreen(
@@ -28,26 +32,28 @@ fun PerfilAprendizScreen(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .background(Brush.linearGradient(colors = listOf(Verde3, Verde5))),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxWidth()
+            .fillMaxHeight(0.85f)
+            .padding(4.dp)
+            .background(color = Color.White, shape = RoundedCornerShape(8.dp))
+            .shadow(2.dp, shape = RoundedCornerShape(3.dp))
+            .padding(16.dp)
     ) {
         Text(
-            text = "Perfil",
+            text = "Seu Perfil",
             fontSize = 28.sp,
-            color = Verde1,
-            modifier = Modifier.padding(vertical = 16.dp)
+            color = Verde6,
+            modifier = Modifier.padding(16.dp)
         )
 
-        PerfilItem(title = "Nome", value = nome)
-        PerfilItem(title = "Áreas de Interesse", value = areasInteresse)
-        PerfilItem(title = "Formação Acadêmica", value = formacaoAcademica)
-        PerfilItem(title = "Nível de Experiência", value = nivelExperiencia)
-        PerfilItem(title = "Objetivos de Aprendizagem", value = objetivosAprendizagem)
-        PerfilItem(title = "Disponibilidade", value = disponibilidade)
-        PerfilItem(title = "Localização", value = localizacao)
-        PerfilItem(title = "Contato", value = contato)
+        PerfilItem(title = "NOME", value = nome)
+        PerfilItem(title = "ÁREAS DE INTERESSE", value = areasInteresse)
+        PerfilItem(title = "FORMAÇÃO ACADÊMICA", value = formacaoAcademica)
+        PerfilItem(title = "NÍVEL DE EXPERIÊNCIA", value = nivelExperiencia)
+        PerfilItem(title = "OBJETIVOS", value = objetivosAprendizagem)
+        PerfilItem(title = "DISPONIBILIDADE", value = disponibilidade)
+        PerfilItem(title = "LOCALIZAÇÃO", value = localizacao)
+        PerfilItem(title = "CONTATO", value = contato)
     }
 }
 
@@ -61,13 +67,13 @@ fun PerfilItem(title: String, value: String) {
         Text(
             text = title,
             fontSize = 16.sp,
-            color = Verde1,
+            color = Verde6,
             modifier = Modifier.padding(bottom = 4.dp)
         )
         Text(
             text = value,
             fontSize = 16.sp,
-            color = Verde1,
+            color = Verde3,
             modifier = Modifier.padding(bottom = 8.dp)
         )
     }

@@ -34,8 +34,8 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import androidx.compose.ui.unit.dp as dp1
 import br.com.fiap.mentorandoapp.dataBase.repository.AprendizRepository
 import br.com.fiap.mentorandoapp.components.FormOutlineComponent
-
-
+import br.com.fiap.mentorandoapp.ui.theme.Verde2
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 
 @Composable
@@ -198,14 +198,14 @@ fun CadastroAprendizScreen(navController: NavController) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
-                .background(Brush.linearGradient(colors = listOf(Verde3, Verde5))),
+                .height(30.dp)
+                .background(Verde2),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween // Espaçamento entre os elementos
         ) {
             Text(
                 text = "Voltar",
-                color = Verde1,
+                color = Verde6,
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(start = 10.dp)
@@ -215,7 +215,7 @@ fun CadastroAprendizScreen(navController: NavController) {
             )
             Text(
                 text = "Cadastrar",
-                color = Verde1,
+                color = Verde6,
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(end = 10.dp)

@@ -24,8 +24,10 @@ import br.com.fiap.mentorandoapp.components.FormOutlineComponent
 import br.com.fiap.mentorandoapp.dataBase.repository.MentorRepository
 import br.com.fiap.mentorandoapp.model.MentorModel
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
+import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 @Composable
 fun CadastroMentorScreen(navController: NavController) {
@@ -172,14 +174,14 @@ fun CadastroMentorScreen(navController: NavController) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp)
-                .background(Brush.linearGradient(colors = listOf(Verde3, Verde5))),
+                .height(30.dp)
+                .background(Verde2),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
                 text = "Voltar",
-                color = Verde1,
+                color = Verde6,
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(start = 10.dp)
@@ -191,7 +193,7 @@ fun CadastroMentorScreen(navController: NavController) {
             //Botão para cadastrar (opcional)
             Text(
                 text = "Cadastrar",
-                color = Verde1,
+                color = Verde6,
                 fontSize = 16.sp,
                 modifier = Modifier
                     .padding(end = 10.dp)

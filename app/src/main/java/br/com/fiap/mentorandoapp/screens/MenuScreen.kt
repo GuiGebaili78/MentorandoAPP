@@ -34,40 +34,53 @@ fun MenuScreen(navController: NavController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Button(
-            onClick = {
-                //navController.navigate("")
-            },
-            colors = ButtonDefaults.buttonColors(Verde5),
-            modifier = Modifier
-                .padding(36.dp)
-                .width(250.dp)
-                .shadow(10.dp, shape = RoundedCornerShape(50.dp))
+        Text(
+            text = "SELECIONAR",
+            color = Verde4,
+            fontSize = 25.sp,
+            modifier = Modifier.padding(bottom = 16.dp)
+        )
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(horizontal = 16.dp)
         ) {
-            Text(
-                text = "MENTOR",
-                fontSize = 20.sp,
-                color = Verde1
-            )
+            Button(
+                onClick = {
+                    //navController.navigate("")
+                },
+                colors = ButtonDefaults.buttonColors(Verde5),
+                modifier = Modifier
+                    .padding(36.dp)
+                    .width(250.dp)
+                    .shadow(10.dp, shape = RoundedCornerShape(50.dp))
+            ) {
+                Text(
+                    text = "MENTOR",
+                    fontSize = 20.sp,
+                    color = Verde1
+                )
+            }
+
+            Button(
+                onClick = {
+                    //navController.navigate("")
+                },
+                colors = ButtonDefaults.buttonColors(Verde5),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .width(250.dp)
+                    .padding(top = 16.dp)
+                    .shadow(10.dp, shape = RoundedCornerShape(50.dp))// Adicionando padding entre os botões
+            ) {
+                Text(
+                    text = "APRENDIZ",
+                    fontSize = 20.sp,
+                    color = Verde1
+                )
+            }
         }
 
-        Button(
-            onClick = {
-                //navController.navigate("")
-            },
-            colors = ButtonDefaults.buttonColors(Verde5),
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .width(250.dp)
-                .padding(top = 16.dp)
-                .shadow(10.dp, shape = RoundedCornerShape(50.dp))// Adicionando padding entre os botões
-        ) {
-            Text(
-                text = "APRENDIZ",
-                fontSize = 20.sp,
-                color = Verde1
-            )
-        }
         Spacer(modifier = Modifier.height(100.dp))
 
         Row(
@@ -93,6 +106,7 @@ fun MenuScreen(navController: NavController) {
     }
 
 }
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
