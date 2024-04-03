@@ -1,5 +1,6 @@
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -10,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -78,12 +80,13 @@ fun LoginScreen(
                     // Chame a função de login passando email e senha
                     onLogin(email, password)
                     // Navegue para a próxima tela após o login
-                    navController.navigate("CarrosselMentorScreen")
+                    navController.navigate("BuscaScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier
                     .padding(36.dp)
                     .width(250.dp)
+                    .shadow(10.dp, shape = RoundedCornerShape(50.dp))
             ) {
                 Text(
                     text = "ENTRAR",
@@ -103,7 +106,7 @@ fun LoginScreen(
                 Text(
                     text = "Voltar",
                     color = Verde4,
-                    fontSize = 16.sp,
+                    fontSize = 25.sp,
                     modifier = Modifier
                         .clickable {
                             // Navegue de volta para a tela de cadastro

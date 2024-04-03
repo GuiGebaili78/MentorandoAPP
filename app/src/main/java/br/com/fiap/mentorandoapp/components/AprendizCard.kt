@@ -20,16 +20,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.mentorandoapp.model.Mentor
-import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import br.com.fiap.mentorandoapp.R
+import br.com.fiap.mentorandoapp.model.Aprendiz
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 
 
 
 
 @Composable
-fun MentorCard(mentor: Mentor) {
+fun AprendizCard(aprendiz: Aprendiz) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -46,7 +46,7 @@ fun MentorCard(mentor: Mentor) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = mentor.nome,
+                text = aprendiz.nome,
                 fontSize = 24.sp,
                 color = Verde6,
                 modifier = Modifier
@@ -65,20 +65,20 @@ fun MentorCard(mentor: Mentor) {
             )
         }
 
-        MentorItem(title = "FORMAÇÃO ACADÊMICA", value = mentor.formacao)
-        MentorItem(title = "EXPERIÊNCIA", value = mentor.experiencia)
-        MentorItem(title = "CERTIFICAÇÕES", value = mentor.certificacao)
-        MentorItem(title = "BIOGRAFIA", value = mentor.biografia)
-        MentorItem(title = "DISPONIBILIDADE", value = mentor.disponibilidade)
-        MentorItem(title = "LOCALIZAÇÃO", value = mentor.localizacao)
-        MentorItem(title = "CONTATO", value = mentor.contato)
+        AprendizItem(title = "FORMAÇÃO ACADÊMICA", value = aprendiz.formacao)
+        AprendizItem(title = "INTERESSES", value = aprendiz.interesse)
+        AprendizItem(title = "OBJETIVOS", value = aprendiz.objetivo)
+        AprendizItem(title = "EXPERIÊNCIAS", value = aprendiz.experiencia)
+        AprendizItem(title = "DISPONIBILIDADE", value = aprendiz.disponibilidade)
+        AprendizItem(title = "LOCALIZAÇÃO", value = aprendiz.localizacao)
+        AprendizItem(title = "CONTATO", value = aprendiz.contato)
 
         Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
 @Composable
-fun MentorItem(title: String, value: String) {
+fun AprendizItem(title: String, value: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -100,18 +100,18 @@ fun MentorItem(title: String, value: String) {
 
 @Preview (showBackground = true, showSystemUi = true)
 @Composable
-fun MentorCardPreview() {
-    val sampleMentor = Mentor(
+fun AprendizCardPreview() {
+    val sampleAprendiz = Aprendiz(
         id = 1,
         nome = "João",
         formacao = "Formação acadêmica relevante",
-        experiencia = "Anos de experiência na área",
-        certificacao = "Certificações profissionais",
-        biografia = "Breve descrição do mentor",
+        interesse = "Seus interesses na área",
+        objetivo = "Objetivos",
+        experiencia = "Experiências",
         disponibilidade = "Disponibilidade para mentoria",
         localizacao = "Localização do mentor (opcional)",
         contato = "Meio de contato (e-mail, etc.)"
     )
 
-    MentorCard(mentor = sampleMentor)
+    AprendizCard(aprendiz = sampleAprendiz)
 }

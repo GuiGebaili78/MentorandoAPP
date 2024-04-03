@@ -29,7 +29,7 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 
 @Composable
-fun CadastroScreen(navController: NavController) {
+fun BuscaScreen(navController: NavController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -44,14 +44,14 @@ fun CadastroScreen(navController: NavController) {
         ) {
             // Texto "Cadastre-se"
             Text(
-                text = "Cadastre-se",
+                text = "Procuro por:",
                 fontSize = 24.sp,
                 color = Verde3,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
             Button(
                 onClick = {
-                    navController.navigate("CadastroMentorScreen")
+                    navController.navigate("CarrosselMentorScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier
@@ -60,7 +60,7 @@ fun CadastroScreen(navController: NavController) {
                     .shadow(10.dp, shape = RoundedCornerShape(50.dp))
             ) {
                 Text(
-                    text = "MENTOR",
+                    text = "MENTORES",
                     fontSize = 20.sp,
                     color = Verde1
                 )
@@ -68,7 +68,7 @@ fun CadastroScreen(navController: NavController) {
 
             Button(
                 onClick = {
-                    navController.navigate("CadastroAprendizScreen")
+                    navController.navigate("CarrosselAprendizScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier
@@ -78,7 +78,7 @@ fun CadastroScreen(navController: NavController) {
                     .shadow(10.dp, shape = RoundedCornerShape(50.dp))
             ) {
                 Text(
-                    text = "APRENDIZ",
+                    text = "APRENDIZES",
                     fontSize = 20.sp,
                     color = Verde1
                 )
@@ -101,7 +101,7 @@ fun CadastroScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 10.dp)
                     .clickable {
-                        navController.navigate("BemVindoScreen")
+                        navController.navigate("LoginScreen")
                     }
             )
         }
@@ -113,6 +113,6 @@ fun CadastroScreen(navController: NavController) {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun CadastroScreenPreview() {
-    CadastroScreen(navController = rememberNavController())
+fun BuscaScreenPreview() {
+    BuscaScreen(navController = rememberNavController())
 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -47,7 +49,9 @@ fun BemVindoScreen(navController: NavController) {
             fontSize = 32.sp, // Tamanho de fonte maior para torná-lo mais chamativo
             fontWeight = FontWeight.Bold, // Definindo a fonte como negrito para torná-lo mais grosso
             color = Verde4,
-            modifier = Modifier.padding(bottom = 46.dp)
+            modifier = Modifier
+                .padding(bottom = 46.dp)
+
         )
 
         // Imagem central
@@ -69,8 +73,8 @@ fun BemVindoScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(Verde5),
             modifier = Modifier
                 .padding(horizontal = 16.dp)
-
-                .width(250.dp)
+                .shadow(10.dp, shape = RoundedCornerShape(50.dp))
+                .width(250.dp),
         ) {
             Text(
                 text = "LOGIN",
@@ -87,7 +91,7 @@ fun BemVindoScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(Verde5),
             modifier = Modifier
                 .padding(horizontal = 16.dp)
-
+                .shadow(10.dp, shape = RoundedCornerShape(50.dp))
                 .width(250.dp)
         ) {
             Text(
