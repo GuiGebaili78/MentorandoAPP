@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
                         composable(route = "LoginScreen") {
                             LoginScreen(
                                 onLogin = { email, password ->
-                                    navController.navigate("CarrosselScreen")
+                                    navController.navigate("CarrosselMentorScreen")
                                 },
                                 navController = navController
                             )
@@ -89,8 +89,8 @@ class MainActivity : ComponentActivity() {
                         composable(route = "MenuScreen") {
                             MenuScreen(navController)
                         }
-                        composable(route = "CarrosselScreen") {
-                            CarrosselScreen(navController)
+                        composable(route = "CarrosselMentorScreen") {
+                            CarrosselMentorScreen(navController)
                         }
                     }
                 }

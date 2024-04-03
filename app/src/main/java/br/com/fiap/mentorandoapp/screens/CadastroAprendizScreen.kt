@@ -200,8 +200,8 @@ fun CadastroAprendizScreen(navController: NavController) {
                 .fillMaxWidth()
                 .height(50.dp)
                 .background(Brush.linearGradient(colors = listOf(Verde3, Verde5))),
-            horizontalArrangement = Arrangement.SpaceBetween, // Espaça os itens uniformemente
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween // Espaçamento entre os elementos
         ) {
             Text(
                 text = "Voltar",
@@ -241,10 +241,10 @@ fun CadastroAprendizScreen(navController: NavController) {
                         disponibilidadeState.value = ""
                         localizacaoState.value = ""
                         contatoState.value = ""
-
                     }
             )
         }
+
 
     }
 }
