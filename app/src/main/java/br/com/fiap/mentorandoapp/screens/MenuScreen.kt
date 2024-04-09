@@ -26,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 @Composable
 fun MenuScreen(navController: NavController) {
@@ -36,7 +37,7 @@ fun MenuScreen(navController: NavController) {
     ) {
         Text(
             text = "SELECIONAR",
-            color = Verde4,
+            color = Verde6,
             fontSize = 25.sp,
             modifier = Modifier.padding(bottom = 16.dp)
         )
@@ -93,7 +94,7 @@ fun MenuScreen(navController: NavController) {
         ) {
             Text(
                 text = "Voltar",
-                color = Verde4,
+                color = Verde6,
                 fontSize = 25.sp,
                 modifier = Modifier
                     .clickable {

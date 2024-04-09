@@ -1,5 +1,6 @@
 package br.com.fiap.mentorandoapp.screens
 
+
 import BottomNavigation
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -19,14 +20,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Api.fetchAprendizFromApi
-import br.com.fiap.mentorandoapp.Api.fetchMentorsFromApi
-import br.com.fiap.mentorandoapp.model.Mentor
-import br.com.fiap.mentorandoapp.ui.theme.Verde2
-import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import br.com.fiap.mentorandoapp.R
-import br.com.fiap.mentorandoapp.components.AprendizCard
 import br.com.fiap.mentorandoapp.model.Aprendiz
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
+import br.com.fiap.mentorandoapp.ui.theme.Verde2
+import br.com.fiap.mentorandoapp.ui.theme.Verde5
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
+import br.com.fiap.mentorandoapp.components.AprendizCard
 
 @Composable
 fun CarrosselAprendizScreen(
@@ -39,10 +39,11 @@ fun CarrosselAprendizScreen(
         aprendizs = fetchAprendizFromApi()
     }
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(0.2.dp)
+            .padding(0.2.dp),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -58,10 +59,7 @@ fun CarrosselAprendizScreen(
         }
 
         Row(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(bottom = 30.dp),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(
@@ -71,7 +69,7 @@ fun CarrosselAprendizScreen(
                 modifier = Modifier
                     .padding(16.dp)
                     .size(72.dp)
-                    .shadow(4.dp, shape = CircleShape), // Adicionando sombra
+                    .shadow(4.dp, shape = CircleShape),
                 colors = ButtonDefaults.buttonColors(Verde2),
                 shape = CircleShape,
                 content = {
@@ -92,7 +90,7 @@ fun CarrosselAprendizScreen(
                     .padding(16.dp)
                     .weight(1f)
                     .height(72.dp)
-                    .shadow(4.dp, shape = RoundedCornerShape(16.dp)), // Adicionando sombra
+                    .shadow(4.dp, shape = RoundedCornerShape(16.dp)),
                 colors = ButtonDefaults.buttonColors(Verde6),
                 shape = RoundedCornerShape(16.dp),
                 content = {
@@ -111,7 +109,7 @@ fun CarrosselAprendizScreen(
                 modifier = Modifier
                     .padding(16.dp)
                     .size(72.dp)
-                    .shadow(4.dp, shape = CircleShape), // Adicionando sombra
+                    .shadow(4.dp, shape = CircleShape),
                 colors = ButtonDefaults.buttonColors(Verde2),
                 shape = CircleShape,
                 content = {
@@ -124,15 +122,14 @@ fun CarrosselAprendizScreen(
                 }
             )
         }
+
         Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+
         ) {
             BottomNavigation(navController = navController)
         }
     }
-
-
 }
 
 @Preview(showBackground = true, showSystemUi = true)

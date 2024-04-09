@@ -29,6 +29,7 @@ import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 @Composable
 fun BuscaScreen(navController: NavController) {
@@ -46,9 +47,9 @@ fun BuscaScreen(navController: NavController) {
         ) {
             // Texto "Cadastre-se"
             Text(
-                text = "Procuro por:",
-                fontSize = 24.sp,
-                color = Verde3,
+                text = "Encontre seu mentor ou aprendiz:",
+                fontSize = 18.sp,
+                color = Verde6,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
             Button(

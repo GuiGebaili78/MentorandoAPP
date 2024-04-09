@@ -59,7 +59,7 @@ fun CadastroMentorScreen(navController: NavController) {
             Text(
                 text = "Cadastro de Mentores",
                 fontSize = 24.sp,
-                color = Verde3,
+                color = Verde6,
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.CenterHorizontally)

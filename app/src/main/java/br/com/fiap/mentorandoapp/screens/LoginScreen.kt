@@ -24,6 +24,7 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 @Composable
 fun LoginScreen(
@@ -48,7 +49,7 @@ fun LoginScreen(
             Text(
                 text = "LOGIN",
                 fontSize = 24.sp,
-                color = Verde3,
+                color = Verde6,
                 fontWeight = FontWeight.Bold, // Adiciona essa linha para tornar o texto em negrito
                 modifier = Modifier
                     .padding(16.dp)
@@ -105,7 +106,7 @@ fun LoginScreen(
             ) {
                 Text(
                     text = "Voltar",
-                    color = Verde4,
+                    color = Verde6,
                     fontSize = 25.sp,
                     modifier = Modifier
                         .clickable {

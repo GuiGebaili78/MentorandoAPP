@@ -47,7 +47,7 @@ fun CadastroScreen(navController: NavController) {
             Text(
                 text = "Cadastre-se",
                 fontSize = 24.sp,
-                color = Verde3,
+                color = Verde6,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
             Button(
