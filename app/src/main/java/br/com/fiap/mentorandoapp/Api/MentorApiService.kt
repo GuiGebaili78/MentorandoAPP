@@ -27,7 +27,7 @@ suspend fun fetchMentorsFromApi(): List<Mentor> {
                     id = mentorObject.getInt("id"),
                     nome = mentorObject.getString("nome"),
                     formacao = mentorObject.getString("formacao"),
-                    experiencia = mentorObject.getString("experiencia"),
+                    atuacao = mentorObject.getString("atuacao"),
                     certificacao = mentorObject.getString("certificacao"),
                     biografia = mentorObject.getString("biografia"),
                     disponibilidade = mentorObject.getString("disponibilidade"),

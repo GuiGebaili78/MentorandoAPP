@@ -4,7 +4,7 @@ data class Mentor(
     val id: Int,
     val nome: String,
     val formacao: String,
-    val experiencia: String,
+    val atuacao: String,
     val certificacao: String,
     val biografia: String,
     val disponibilidade: String,

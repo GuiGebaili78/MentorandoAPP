@@ -37,6 +37,8 @@ suspend fun fetchAprendizFromApi(): List<Aprendiz> {
                 aprendizList.add(aprendiz)
             }
 
+
+
             Log.d("AprendizApiteste", "Erro ao buscar aprendizteste: ${aprendizList.toString()}")
             aprendizList
         } catch (e: Exception) {

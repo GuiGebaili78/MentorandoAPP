@@ -9,7 +9,7 @@ data class MentorModel (
     var nome: String = "",
     var certificacao: String = "",
     var formacao: String = "",
-    var experiencia: String = "",
+    var atuacao: String = "",
     var biografia: String = "",
     var disponibilidade: String = "",
     var localizacao: String = "",

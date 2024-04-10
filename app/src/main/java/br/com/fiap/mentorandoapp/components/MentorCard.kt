@@ -66,7 +66,7 @@ fun MentorCard(mentor: Mentor) {
         }
 
         MentorItem(title = "FORMAÇÃO ACADÊMICA", value = mentor.formacao)
-        MentorItem(title = "NÍVEL DE EXPERIÊNCIA", value = mentor.experiencia)
+        MentorItem(title = "ÁREA DE ATUAÇÃO", value = mentor.atuacao)
         MentorItem(title = "CERTIFICAÇÕES", value = mentor.certificacao)
         MentorItem(title = "BIOGRAFIA", value = mentor.biografia)
         MentorItem(title = "DISPONIBILIDADE", value = mentor.disponibilidade)
@@ -105,7 +105,7 @@ fun MentorCardPreview() {
         id = 1,
         nome = "João",
         formacao = "Formação acadêmica relevante",
-        experiencia = "Anos de experiência na área",
+        atuacao = "Anos de experiência na área",
         certificacao = "Certificações profissionais",
         biografia = "Breve descrição do mentor",
         disponibilidade = "Disponibilidade para mentoria",

@@ -201,7 +201,7 @@ fun CadastroMentorScreen(navController: NavController) {
                         val mentor = MentorModel(
                             nome = nomeState.value,
                             formacao = formacaoState.value,
-                            experiencia = experienciaState.value,
+                            atuacao = experienciaState.value,
                             certificacao = certificacaoState.value,
                             biografia = biografiaState.value,
                             disponibilidade = disponibilidadeState.value,

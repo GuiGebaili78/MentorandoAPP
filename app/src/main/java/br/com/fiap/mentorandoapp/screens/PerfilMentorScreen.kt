@@ -28,7 +28,7 @@ import br.com.fiap.mentorandoapp.R
 @Composable
 fun PerfilMentorCard(
     nome: String,
-    areasInteresse: String,
+    areaAtuacao: String,
     formacaoAcademica: String,
     nivelExperiencia: String,
     objetivosAprendizagem: String,
@@ -73,7 +73,7 @@ fun PerfilMentorCard(
         }
 
         PerfilMentorItem(title = "Nome", value = nome)
-        PerfilMentorItem(title = "Áreas de Interesse", value = areasInteresse)
+        PerfilMentorItem(title = "Áreas de Atuação", value = areaAtuacao)
         PerfilMentorItem(title = "Formação Acadêmica", value = formacaoAcademica)
         PerfilMentorItem(title = "Nível de Experiência", value = nivelExperiencia)
         PerfilMentorItem(title = "Objetivos de Aprendizagem", value = objetivosAprendizagem)
@@ -115,7 +115,7 @@ fun PerfilMentorItem(title: String, value: String) {
 fun PerfilMentorCardPreview() {
     PerfilMentorCard(
         nome = "João Silva",
-        areasInteresse = "Tecnologia, Educação",
+        areaAtuacao = "Tecnologia, Educação",
         formacaoAcademica = "Bacharel em Ciência da Computação",
         nivelExperiencia = "Avançado",
         objetivosAprendizagem = "Aprender novas tecnologias",

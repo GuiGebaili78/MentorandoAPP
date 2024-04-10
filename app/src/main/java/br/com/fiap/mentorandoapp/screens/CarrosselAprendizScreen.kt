@@ -57,6 +57,23 @@ fun CarrosselAprendizScreen(
                 AprendizCard(aprendiz = aprendiz)
             }
         }
+        Button(
+            onClick = {
+                navController.navigate("PesquisaAprendizScreen")
+            },
+            colors = ButtonDefaults.buttonColors(Verde5),
+            modifier = Modifier
+                .padding(2.dp)
+                .align(Alignment.CenterHorizontally)
+                .width(200.dp)
+                .shadow(10.dp, shape = RoundedCornerShape(50.dp))
+        ) {
+            Text(
+                text = "Pesquisar",
+                fontSize = 20.sp,
+                color = Verde1
+            )
+        }
 
         Row(
             modifier = Modifier.fillMaxWidth(),

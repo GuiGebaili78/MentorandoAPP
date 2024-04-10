@@ -1,6 +1,5 @@
 package br.com.fiap.mentorandoapp
 
-
 import LoginScreen
 import PerfilAprendizScreen
 import android.os.Bundle
@@ -11,8 +10,11 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
@@ -41,8 +43,6 @@ fun MentorandoApp() {
         ) {
             val navController = rememberNavController()
 
-
-
             NavHost(
                 navController = navController,
                 startDestination = "BemVindoScreen",
@@ -54,11 +54,23 @@ fun MentorandoApp() {
                 composable(route = "LoginScreen") {
                     LoginScreen(
                         onLogin = { email, password ->
-                            navController.navigate("BuscaScreen")
+                            navController.navigate("PesquisaAprendizScreen")
                         },
                         navController = navController
                     )
                 }
+                composable(route = "PesquisaAprendizScreen") {
+
+                    PesquisaAprendizScreen(navController)
+                }
+
+
+                composable(route = "CarrosselAprendizScreen") {
+                    CarrosselAprendizScreen(navController)
+                }
+
+
+
                 composable(route = "CadastroScreen") {
                     CadastroScreen(navController)
                 }
@@ -87,7 +99,7 @@ fun MentorandoApp() {
                 composable(route = "PerfilMentorScreen") {
                     PerfilMentorCard(
                         nome = "Nome do Mentor",
-                        areasInteresse = "Áreas de Interesse do Mentor",
+                        areaAtuacao = "Áreas de Atuação do Mentor",
                         formacaoAcademica = "Formação Acadêmica do Mentor",
                         nivelExperiencia = "Nível de Experiência do Mentor",
                         objetivosAprendizagem = "Objetivos de Aprendizagem do Mentor",
@@ -103,9 +115,6 @@ fun MentorandoApp() {
                 }
                 composable(route = "CarrosselMentorScreen") {
                     CarrosselMentorScreen(navController)
-                }
-                composable(route = "CarrosselAprendizScreen") {
-                    CarrosselAprendizScreen(navController)
                 }
                 composable(route = "BuscaScreen") {
                     BuscaScreen(navController)
