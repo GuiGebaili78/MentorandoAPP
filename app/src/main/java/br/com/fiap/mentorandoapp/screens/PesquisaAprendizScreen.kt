@@ -21,6 +21,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,19 +38,34 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Api.fetchAprendizFromApi
+import br.com.fiap.mentorandoapp.Api.fetchFilteredAprendizFromApi
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun PesquisaAprendizScreen(navController: NavController) {
-
     var areaAtuacao by remember { mutableStateOf(listOf<String>()) }
     var localizacao by remember { mutableStateOf(listOf<String>()) }
     var disponibilidade by remember { mutableStateOf(listOf<String>()) }
+
+    var areaAtuacaoSelecionada by remember { mutableStateOf(listOf<String>()) }
+    var localizacaoSelecionada by remember { mutableStateOf(listOf<String>()) }
+    var disponibilidadeSelecionada by remember { mutableStateOf(listOf<String>()) }
+
+    // Carregar dados da API quando a tela é carregada
+    LaunchedEffect(Unit) {
+        val aprendizes = fetchAprendizFromApi()
+        areaAtuacao = aprendizes.map { it.formacao }.distinct()
+        localizacao = aprendizes.map { it.localizacao }.distinct()
+        disponibilidade = aprendizes.map { it.disponibilidade }.distinct()
+    }
 
     Column(
         modifier = Modifier
@@ -60,26 +76,24 @@ fun PesquisaAprendizScreen(navController: NavController) {
     ) {
         FilterList(
             title = "ÁREA DE ATUAÇÃO",
-            items = listOf("Todos") + areaAtuacao,
-            onItemsChanged = { areaAtuacao = it },
-            color = Color.White
-        ) // Altere a cor do filtro aqui
+            items = areaAtuacao,
+            selectedItems = areaAtuacaoSelecionada,
+            onItemsChanged = { areaAtuacaoSelecionada = it }
+        )
         Spacer(modifier = Modifier.height(8.dp))
         FilterList(
             title = "LOCALIZAÇÃO",
-            items = listOf("Todos") + localizacao,
-            onItemsChanged = { localizacao = it },
-            color = Color.White,
-
-
-        ) // Altere a cor do filtro aqui
+            items = localizacao,
+            selectedItems = localizacaoSelecionada,
+            onItemsChanged = { localizacaoSelecionada = it }
+        )
         Spacer(modifier = Modifier.height(8.dp))
         FilterList(
             title = "DISPONIBILIDADE",
-            items = listOf("Todos") + disponibilidade,
-            onItemsChanged = { disponibilidade = it },
-            color = Color.White
-        ) // Altere a cor do filtro aqui
+            items = disponibilidade,
+            selectedItems = disponibilidadeSelecionada,
+            onItemsChanged = { disponibilidadeSelecionada = it }
+        )
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier
@@ -89,30 +103,37 @@ fun PesquisaAprendizScreen(navController: NavController) {
         ) {
             Button(
                 onClick = {
-                    areaAtuacao = listOf()
-                    localizacao = listOf()
-                    disponibilidade = listOf()
+                    // Limpar os filtros selecionados
+                    areaAtuacaoSelecionada = listOf()
+                    localizacaoSelecionada = listOf()
+                    disponibilidadeSelecionada = listOf()
                 },
-                colors = ButtonDefaults.buttonColors(Verde6), // Altere a cor de fundo do botão aqui
-                modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp)) // Adicione a sombra aqui
+                colors = ButtonDefaults.buttonColors(Verde6),
+                modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp))
             ) {
-                Text("LIMPAR", color = Verde1) // Altere a cor do texto aqui
+                Text("LIMPAR", color = Verde1)
             }
             Button(
                 onClick = {
-                    // Implemente a lógica de aplicação do filtro aqui
+                    // Aplicar os filtros selecionados
+                    // Iniciar uma nova coroutine
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val filteredAprendizes = fetchFilteredAprendizFromApi(
+                            areaAtuacaoSelecionada,
+                            localizacaoSelecionada,
+                            disponibilidadeSelecionada
+                        )
+                        // Faça algo com os aprendizes filtrados
+                    }
                 },
-                colors = ButtonDefaults.buttonColors(Verde6), // Altere a cor de fundo do botão aqui
-                modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp)) // Adicione a sombra aqui
+                colors = ButtonDefaults.buttonColors(Verde6),
+                modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp))
             ) {
-                Text("APLICAR", color = Verde1) // Altere a cor do texto aqui
+                Text("APLICAR", color = Verde1)
             }
-
-
         }
-
         BottomNavigation(
-            modifier = Modifier.height(56.dp), // Define uma altura fixa para o BottomNavigation
+            modifier = Modifier.height(56.dp),
             navController = navController
         )
     }
@@ -122,31 +143,29 @@ fun PesquisaAprendizScreen(navController: NavController) {
 fun FilterList(
     title: String,
     items: List<String>,
-    onItemsChanged: (List<String>) -> Unit,
-    color: Color
+    selectedItems: List<String>,
+    onItemsChanged: (List<String>) -> Unit
 ) {
     Column {
         Text(
             color = Verde6,
             text = title,
             modifier = Modifier.padding(6.dp),
-            style = TextStyle(fontWeight = FontWeight.Bold) // Engrossa o texto
+            style = TextStyle(fontWeight = FontWeight.Bold)
         )
-        // Altere a cor do título aqui
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(175.dp)
                 .padding(10.dp)
-                .background(Color.White), // Altere a cor de fundo aqui
+                .background(Color.White),
         ) {
             items(items) { item ->
                 CheckboxItem(
                     item = item,
-                    selectedItems = items,
-                    onItemsChanged = onItemsChanged,
-                    color = color
-                ) // Passe a cor para o CheckboxItem
+                    selectedItems = selectedItems,
+                    onItemsChanged = onItemsChanged
+                )
             }
         }
     }
@@ -156,18 +175,18 @@ fun FilterList(
 fun CheckboxItem(
     item: String,
     selectedItems: List<String>,
-    onItemsChanged: (List<String>) -> Unit,
-    color: Color
+    onItemsChanged: (List<String>) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                if (item in selectedItems) {
-                    onItemsChanged(selectedItems - item)
+                val updatedItems = if (item in selectedItems) {
+                    selectedItems - item
                 } else {
-                    onItemsChanged(selectedItems + item)
+                    selectedItems + item
                 }
+                onItemsChanged(updatedItems)
             },
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -175,15 +194,13 @@ fun CheckboxItem(
             checked = item in selectedItems,
             onCheckedChange = null,
             colors = CheckboxDefaults.colors(checkedColor = Verde6)
-        ) // Altere a cor do checkbox aqui
+        )
         Text(
             text = item,
             modifier = Modifier.padding(start = 8.dp),
-            color = Verde6
-        ) // Altere a cor do texto aqui
+        )
     }
 }
-
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

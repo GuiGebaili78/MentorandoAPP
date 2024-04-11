@@ -36,14 +36,20 @@ suspend fun fetchAprendizFromApi(): List<Aprendiz> {
                 )
                 aprendizList.add(aprendiz)
             }
-
-
-
-            Log.d("AprendizApiteste", "Erro ao buscar aprendizteste: ${aprendizList.toString()}")
+            Log.d("AprendizApi", "Aprendizes buscados: ${aprendizList.toString()}")
             aprendizList
         } catch (e: Exception) {
             Log.e("AprendizApi", "Erro ao buscar aprendizes: ${e.message}")
             emptyList()
         }
+    }
+}
+
+suspend fun fetchFilteredAprendizFromApi(areaAtuacao: List<String>, localizacao: List<String>, disponibilidade: List<String>): List<Aprendiz> {
+    val allAprendizes = fetchAprendizFromApi()
+    return allAprendizes.filter { aprendiz ->
+        (areaAtuacao.isEmpty() || aprendiz.formacao in areaAtuacao) &&
+                (localizacao.isEmpty() || aprendiz.localizacao in localizacao) &&
+                (disponibilidade.isEmpty() || aprendiz.disponibilidade in disponibilidade)
     }
 }

@@ -26,7 +26,7 @@ fun BottomNavigation(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(Verde3) // Adiciona o background que ocupa todo o espaço horizontal
+            .background(Verde3)
             .padding(2.dp),
 
         horizontalArrangement = Arrangement.SpaceAround,
@@ -34,8 +34,8 @@ fun BottomNavigation(
     ) {
         NavItem(
             icon = R.drawable.back_24,
-            contentDescription = "Notificação",
-            route = "LoginScreen",
+            contentDescription = "Voltar",
+            route = null, // Altere para null
             navController = navController
         )
         NavItem(
@@ -65,7 +65,7 @@ fun BottomNavigation(
 private fun NavItem(
     icon: Int,
     contentDescription: String,
-    route: String,
+    route: String?,
     navController: NavController
 ) {
     Column(
@@ -77,7 +77,11 @@ private fun NavItem(
             modifier = Modifier
                 .size(24.dp)
                 .clickable {
-                    navController.navigate(route)
+                    if (route == null) {
+                        navController.popBackStack()
+                    } else {
+                        navController.navigate(route)
+                    }
                 }
         )
     }
