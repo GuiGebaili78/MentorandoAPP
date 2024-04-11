@@ -32,7 +32,7 @@ fun AprendizCard(aprendiz: Aprendiz) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.80f)
+            .fillMaxHeight(0.75f)
             .padding(4.dp)
             .background(color = Color.White, shape = RoundedCornerShape(8.dp))
             .shadow(2.dp, shape = RoundedCornerShape(3.dp))

@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import br.com.fiap.mentorandoapp.Api.fetchAprendizFromApi
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
@@ -53,7 +54,7 @@ fun PesquisaAprendizScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Verde3), // Altere a cor de fundo aqui
+            .background(Verde2), // Altere a cor de fundo aqui
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -95,7 +96,7 @@ fun PesquisaAprendizScreen(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(Verde6), // Altere a cor de fundo do botão aqui
                 modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp)) // Adicione a sombra aqui
             ) {
-                Text("LIMPAR", color = Verde2) // Altere a cor do texto aqui
+                Text("LIMPAR", color = Verde1) // Altere a cor do texto aqui
             }
             Button(
                 onClick = {
@@ -104,7 +105,7 @@ fun PesquisaAprendizScreen(navController: NavController) {
                 colors = ButtonDefaults.buttonColors(Verde6), // Altere a cor de fundo do botão aqui
                 modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp)) // Adicione a sombra aqui
             ) {
-                Text("APLICAR", color = Verde2) // Altere a cor do texto aqui
+                Text("APLICAR", color = Verde1) // Altere a cor do texto aqui
             }
 
 
@@ -137,7 +138,7 @@ fun FilterList(
                 .fillMaxWidth()
                 .height(175.dp)
                 .padding(10.dp)
-                .background(color), // Altere a cor de fundo aqui
+                .background(Color.White), // Altere a cor de fundo aqui
         ) {
             items(items) { item ->
                 CheckboxItem(

@@ -65,12 +65,12 @@ fun CarrosselAprendizScreen(
             modifier = Modifier
                 .padding(2.dp)
                 .align(Alignment.CenterHorizontally)
-                .width(200.dp)
+                .width(140.dp)
                 .shadow(10.dp, shape = RoundedCornerShape(50.dp))
         ) {
             Text(
                 text = "Pesquisar",
-                fontSize = 20.sp,
+                fontSize = 18.sp,
                 color = Verde1
             )
         }

@@ -15,6 +15,7 @@ import br.com.fiap.mentorandoapp.R
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import br.com.fiap.mentorandoapp.ui.theme.Verde3
 
 
 @Composable
@@ -25,7 +26,7 @@ fun BottomNavigation(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(Verde2) // Adiciona o background que ocupa todo o espaço horizontal
+            .background(Verde3) // Adiciona o background que ocupa todo o espaço horizontal
             .padding(2.dp),
 
         horizontalArrangement = Arrangement.SpaceAround,
