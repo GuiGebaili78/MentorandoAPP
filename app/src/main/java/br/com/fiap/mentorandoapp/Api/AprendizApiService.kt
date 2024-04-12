@@ -10,6 +10,7 @@ import org.json.JSONArray
 
 
 
+
 suspend fun fetchAprendizFromApi(): List<Aprendiz> {
     return withContext(Dispatchers.IO) {
         try {
@@ -45,11 +46,28 @@ suspend fun fetchAprendizFromApi(): List<Aprendiz> {
     }
 }
 
-suspend fun fetchFilteredAprendizFromApi(areaAtuacao: List<String>, localizacao: List<String>, disponibilidade: List<String>): List<Aprendiz> {
+suspend fun fetchFilteredAprendizFromApi(
+    interesse: List<String>,
+    localizacao: List<String>,
+    disponibilidade: List<String>
+): List<Aprendiz> {
     val allAprendizes = fetchAprendizFromApi()
-    return allAprendizes.filter { aprendiz ->
-        (areaAtuacao.isEmpty() || aprendiz.formacao in areaAtuacao) &&
+    Log.d("AprendizApi", "Todos os aprendizes: $allAprendizes")
+    Log.d("AprendizApi", "Área de Atuação Selecionada: $interesse")
+    Log.d("AprendizApi", "Localização Selecionada: $localizacao")
+    Log.d("AprendizApi", "Disponibilidade Selecionada: $disponibilidade")
+    val filteredAprendizes = allAprendizes.filter { aprendiz ->
+        (interesse.isEmpty() || aprendiz.formacao in interesse) &&
                 (localizacao.isEmpty() || aprendiz.localizacao in localizacao) &&
                 (disponibilidade.isEmpty() || aprendiz.disponibilidade in disponibilidade)
     }
+    Log.d("AprendizApi", "Aprendizes Filtrados: $filteredAprendizes")
+    return filteredAprendizes
 }
+
+
+
+
+
+
+

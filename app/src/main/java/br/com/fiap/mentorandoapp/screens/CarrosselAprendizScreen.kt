@@ -49,12 +49,10 @@ fun CarrosselAprendizScreen(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            aprendizs.ifEmpty {
-                Text(text = "Carregando aprendizes...")
-            }
-
-            aprendizs.getOrNull(currentPage)?.let { aprendiz ->
-                AprendizCard(aprendiz = aprendiz)
+            if (aprendizs.isEmpty()) {
+                Text(text = "Nenhum aprendiz encontrado")
+            } else {
+                AprendizCard(aprendiz = aprendizs[currentPage])
             }
         }
         Button(
@@ -148,6 +146,7 @@ fun CarrosselAprendizScreen(
         }
     }
 }
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

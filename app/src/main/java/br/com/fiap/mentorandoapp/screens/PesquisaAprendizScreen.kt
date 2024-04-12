@@ -51,20 +51,27 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun PesquisaAprendizScreen(navController: NavController) {
-    var areaAtuacao by remember { mutableStateOf(listOf<String>()) }
+    var interesse by remember { mutableStateOf(listOf<String>()) }
     var localizacao by remember { mutableStateOf(listOf<String>()) }
     var disponibilidade by remember { mutableStateOf(listOf<String>()) }
 
-    var areaAtuacaoSelecionada by remember { mutableStateOf(listOf<String>()) }
+    var interesseSelecionada by remember { mutableStateOf(listOf<String>()) }
     var localizacaoSelecionada by remember { mutableStateOf(listOf<String>()) }
     var disponibilidadeSelecionada by remember { mutableStateOf(listOf<String>()) }
 
-    // Carregar dados da API quando a tela é carregada
+    // Função para carregar dados da API e atualizar os filtros
+    fun carregarDadosDaApi() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val aprendizes = fetchAprendizFromApi()
+            interesse = aprendizes.map { it.formacao }.distinct()
+            localizacao = aprendizes.map { it.localizacao }.distinct()
+            disponibilidade = aprendizes.map { it.disponibilidade }.distinct()
+        }
+    }
+
+    // Carregar dados da API sempre que a tela for aberta
     LaunchedEffect(Unit) {
-        val aprendizes = fetchAprendizFromApi()
-        areaAtuacao = aprendizes.map { it.formacao }.distinct()
-        localizacao = aprendizes.map { it.localizacao }.distinct()
-        disponibilidade = aprendizes.map { it.disponibilidade }.distinct()
+        carregarDadosDaApi()
     }
 
     Column(
@@ -75,10 +82,10 @@ fun PesquisaAprendizScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         FilterList(
-            title = "ÁREA DE ATUAÇÃO",
-            items = areaAtuacao,
-            selectedItems = areaAtuacaoSelecionada,
-            onItemsChanged = { areaAtuacaoSelecionada = it }
+            title = "ÁREA DE INTERESSE",
+            items = interesse,
+            selectedItems = interesseSelecionada,
+            onItemsChanged = { interesseSelecionada = it }
         )
         Spacer(modifier = Modifier.height(8.dp))
         FilterList(
@@ -104,9 +111,11 @@ fun PesquisaAprendizScreen(navController: NavController) {
             Button(
                 onClick = {
                     // Limpar os filtros selecionados
-                    areaAtuacaoSelecionada = listOf()
+                    interesseSelecionada = listOf()
                     localizacaoSelecionada = listOf()
                     disponibilidadeSelecionada = listOf()
+                    // Recarregar dados da API
+                    carregarDadosDaApi()
                 },
                 colors = ButtonDefaults.buttonColors(Verde6),
                 modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp))
@@ -115,16 +124,7 @@ fun PesquisaAprendizScreen(navController: NavController) {
             }
             Button(
                 onClick = {
-                    // Aplicar os filtros selecionados
-                    // Iniciar uma nova coroutine
-                    CoroutineScope(Dispatchers.Main).launch {
-                        val filteredAprendizes = fetchFilteredAprendizFromApi(
-                            areaAtuacaoSelecionada,
-                            localizacaoSelecionada,
-                            disponibilidadeSelecionada
-                        )
-                        // Faça algo com os aprendizes filtrados
-                    }
+                    navController.navigate("CarrosselAprendizScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde6),
                 modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp))
@@ -138,6 +138,8 @@ fun PesquisaAprendizScreen(navController: NavController) {
         )
     }
 }
+
+
 
 @Composable
 fun FilterList(
@@ -192,7 +194,14 @@ fun CheckboxItem(
     ) {
         Checkbox(
             checked = item in selectedItems,
-            onCheckedChange = null,
+            onCheckedChange = { isChecked ->
+                val updatedItems = if (isChecked) {
+                    selectedItems + item
+                } else {
+                    selectedItems - item
+                }
+                onItemsChanged(updatedItems)
+            },
             colors = CheckboxDefaults.colors(checkedColor = Verde6)
         )
         Text(
@@ -201,6 +210,7 @@ fun CheckboxItem(
         )
     }
 }
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
