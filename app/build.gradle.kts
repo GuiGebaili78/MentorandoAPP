@@ -72,8 +72,10 @@ dependencies {
 
 
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
-
     implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.google.code.gson:gson:2.10")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore:1.0.0")
 
 
 

@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Api.fetchAprendizFromApi
-import br.com.fiap.mentorandoapp.Api.fetchFilteredAprendizFromApi
+import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
@@ -63,7 +63,7 @@ fun PesquisaAprendizScreen(navController: NavController) {
     fun carregarDadosDaApi() {
         CoroutineScope(Dispatchers.Main).launch {
             val aprendizes = fetchAprendizFromApi()
-            interesse = aprendizes.map { it.formacao }.distinct()
+            interesse = aprendizes.map { it.interesse }.distinct()
             localizacao = aprendizes.map { it.localizacao }.distinct()
             disponibilidade = aprendizes.map { it.disponibilidade }.distinct()
         }
@@ -114,8 +114,10 @@ fun PesquisaAprendizScreen(navController: NavController) {
                     interesseSelecionada = listOf()
                     localizacaoSelecionada = listOf()
                     disponibilidadeSelecionada = listOf()
-                    // Recarregar dados da API
-                    carregarDadosDaApi()
+                    LocalStorage.setFilter("interesse", interesseSelecionada)
+                    LocalStorage.setFilter("localizacao", localizacaoSelecionada)
+                    LocalStorage.setFilter("disponibilidade", disponibilidadeSelecionada)
+                    navController.navigate("CarrosselAprendizScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde6),
                 modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp))
@@ -124,7 +126,13 @@ fun PesquisaAprendizScreen(navController: NavController) {
             }
             Button(
                 onClick = {
+                    // Definindo um filtro na chave 'interesse'
+                    LocalStorage.setFilter("interesse", interesseSelecionada)
+                    LocalStorage.setFilter("localizacao", localizacaoSelecionada)
+                    LocalStorage.setFilter("disponibilidade", disponibilidadeSelecionada)
                     navController.navigate("CarrosselAprendizScreen")
+
+
                 },
                 colors = ButtonDefaults.buttonColors(Verde6),
                 modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp))

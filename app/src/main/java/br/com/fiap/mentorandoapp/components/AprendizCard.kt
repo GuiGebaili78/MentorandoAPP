@@ -109,7 +109,8 @@ fun AprendizCardPreview() {
         experiencia = "Experiências",
         disponibilidade = "Disponibilidade para mentoria",
         localizacao = "Localização do mentor (opcional)",
-        contato = "Meio de contato (e-mail, etc.)"
+        contato = "Meio de contato (e-mail, etc.)",
+        tipo_usuario = "aprendiz"
     )
 
     AprendizCard(aprendiz = sampleAprendiz)

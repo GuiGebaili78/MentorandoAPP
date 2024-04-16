@@ -1,6 +1,7 @@
 package br.com.fiap.mentorandoapp.Api
 
 import android.util.Log
+import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.model.Aprendiz
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -33,11 +34,14 @@ suspend fun fetchAprendizFromApi(): List<Aprendiz> {
                     objetivo = aprendizObject.getString("objetivo"),
                     disponibilidade = aprendizObject.getString("disponibilidade"),
                     localizacao = aprendizObject.getString("localizacao"),
-                    contato = aprendizObject.getString("contato")
+                    contato = aprendizObject.getString("contato"),
+                    tipo_usuario = aprendizObject.getString("tipo_usuario")
                 )
                 aprendizList.add(aprendiz)
             }
-            Log.d("AprendizApi", "Aprendizes buscados: ${aprendizList.toString()}")
+            // Obtendo a lista de uma chave
+            val interesses = LocalStorage.getFilter("interesse")
+            Log.d("AprendizApi", "Aprendizes buscados: ${interesses.toString()}")
             aprendizList
         } catch (e: Exception) {
             Log.e("AprendizApi", "Erro ao buscar aprendizes: ${e.message}")
@@ -46,23 +50,20 @@ suspend fun fetchAprendizFromApi(): List<Aprendiz> {
     }
 }
 
-suspend fun fetchFilteredAprendizFromApi(
-    interesse: List<String>,
-    localizacao: List<String>,
-    disponibilidade: List<String>
-): List<Aprendiz> {
-    val allAprendizes = fetchAprendizFromApi()
-    Log.d("AprendizApi", "Todos os aprendizes: $allAprendizes")
-    Log.d("AprendizApi", "Área de Atuação Selecionada: $interesse")
-    Log.d("AprendizApi", "Localização Selecionada: $localizacao")
-    Log.d("AprendizApi", "Disponibilidade Selecionada: $disponibilidade")
-    val filteredAprendizes = allAprendizes.filter { aprendiz ->
-        (interesse.isEmpty() || aprendiz.formacao in interesse) &&
-                (localizacao.isEmpty() || aprendiz.localizacao in localizacao) &&
-                (disponibilidade.isEmpty() || aprendiz.disponibilidade in disponibilidade)
+fun filtrarAprendizes(aprendizesApi: List<Aprendiz>): List<Aprendiz> {
+    val filtroInteresse = LocalStorage.getFilter("interesse")
+    val filtroTipoUsuario = LocalStorage.getFilter("tipo_usuario")
+    val filtroLocalizacao = LocalStorage.getFilter("localizacao")
+    val filtroDisponibilidade = LocalStorage.getFilter("disponibilidade")
+
+    return aprendizesApi.filter { aprendiz ->
+        val interesseValido = filtroInteresse.isNullOrEmpty() || filtroInteresse.contains(aprendiz.interesse)
+        val tipoUsuarioValido = filtroTipoUsuario.isNullOrEmpty() || filtroTipoUsuario.contains(aprendiz.tipo_usuario)
+        val localizacaoValida = filtroLocalizacao.isNullOrEmpty() || filtroLocalizacao.contains(aprendiz.localizacao)
+        val disponibilidadeValida = filtroDisponibilidade.isNullOrEmpty() || filtroDisponibilidade.contains(aprendiz.disponibilidade)
+
+        interesseValido && tipoUsuarioValido && localizacaoValida && disponibilidadeValida
     }
-    Log.d("AprendizApi", "Aprendizes Filtrados: $filteredAprendizes")
-    return filteredAprendizes
 }
 
 

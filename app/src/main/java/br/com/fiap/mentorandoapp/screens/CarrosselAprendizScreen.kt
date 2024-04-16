@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Api.fetchAprendizFromApi
+import br.com.fiap.mentorandoapp.Api.filtrarAprendizes
 import br.com.fiap.mentorandoapp.R
 import br.com.fiap.mentorandoapp.model.Aprendiz
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
@@ -36,7 +37,7 @@ fun CarrosselAprendizScreen(
     var currentPage by remember { mutableStateOf(0) }
 
     LaunchedEffect(key1 = true) {
-        aprendizs = fetchAprendizFromApi()
+        aprendizs = filtrarAprendizes(fetchAprendizFromApi())
     }
 
     Column(

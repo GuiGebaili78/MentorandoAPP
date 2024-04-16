@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
@@ -54,7 +55,8 @@ fun BuscaScreen(navController: NavController) {
             )
             Button(
                 onClick = {
-                    navController.navigate("CarrosselMentorScreen")
+                    LocalStorage.setFilter("tipo_usuario", listOf("mentor"))
+                    navController.navigate("CarrosselAprendizScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier
@@ -71,6 +73,7 @@ fun BuscaScreen(navController: NavController) {
 
             Button(
                 onClick = {
+                    LocalStorage.setFilter("tipo_usuario", listOf("aprendiz"))
                     navController.navigate("CarrosselAprendizScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),

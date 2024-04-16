@@ -9,5 +9,7 @@ data class Aprendiz(
     val objetivo: String,
     val disponibilidade: String,
     val localizacao: String,
-    val contato: String
+    val contato: String,
+    val tipo_usuario: String
+
 )
