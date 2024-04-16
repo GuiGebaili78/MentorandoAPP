@@ -41,13 +41,13 @@ fun BottomNavigation(
         NavItem(
             icon = R.drawable.baseline_person_pin_24,
             contentDescription = "Perfil",
-            route = "perfil",
+            route = "PerfilUsuarioScreen",
             navController = navController
         )
         NavItem(
             icon = R.drawable.person_search_24,
             contentDescription = "Carrossel",
-            route = "ConexaoCardScreen",
+            route = "CarrosselUsuarioScreen",
             navController = navController
         )
 

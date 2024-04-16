@@ -1,7 +1,7 @@
 package br.com.fiap.mentorandoapp
 
 import LoginScreen
-import PerfilAprendizScreen
+import PerfilUsuarioScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,17 +11,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.mentorandoapp.model.Aprendiz
 import br.com.fiap.mentorandoapp.screens.*
 import br.com.fiap.mentorandoapp.ui.theme.MentorandoAPPTheme
 
@@ -51,71 +45,47 @@ fun MentorandoApp() {
                 composable(route = "BemVindoScreen") {
                     BemVindoScreen(navController)
                 }
+                composable(route = "CadastroUsuarioScreen") {
+                    CadastroUsuarioScreen(navController)
+                }
                 composable(route = "LoginScreen") {
                     LoginScreen(
                         onLogin = { email, password ->
-                            navController.navigate("PesquisaAprendizScreen")
+                            navController.navigate("PesquisaUsuarioScreen")
                         },
                         navController = navController
                     )
                 }
-                composable(route = "PesquisaAprendizScreen") {
 
-                    PesquisaAprendizScreen(navController)
+                composable(route = "CarrosselUsuarioScreen") {
+                    CarrosselUsuarioScreen(navController)
                 }
 
-
-                composable(route = "CarrosselAprendizScreen") {
-                    CarrosselAprendizScreen(navController)
-                }
-
-
-
-                composable(route = "CadastroScreen") {
-                    CadastroScreen(navController)
-                }
                 composable(route = "NotificacaoScreen") {
                     NotificacaoScreen(navController)
                 }
-                composable(route = "CadastroMentorScreen") {
-                    CadastroMentorScreen(navController)
-                }
-                composable(route = "CadastroAprendizScreen") {
-                    CadastroAprendizScreen(navController)
-                }
-                composable(route = "PerfilAprendizScreen") {
-                    PerfilAprendizScreen(
+
+                composable(route = "PerfilUsuarioScreen") {
+                    PerfilUsuarioScreen(
                         nome = "",
                         areasInteresse = "",
                         formacaoAcademica = "",
                         nivelExperiencia = "",
-                        objetivosAprendizagem = "",
+                        objetivos = "",
                         disponibilidade = "",
                         localizacao = "",
                         contato = "",
                         navController = navController
                     )
                 }
-                composable(route = "PerfilMentorScreen") {
-                    PerfilMentorCard(
-                        nome = "Nome do Mentor",
-                        areaAtuacao = "Áreas de Atuação do Mentor",
-                        formacaoAcademica = "Formação Acadêmica do Mentor",
-                        nivelExperiencia = "Nível de Experiência do Mentor",
-                        objetivosAprendizagem = "Objetivos de Aprendizagem do Mentor",
-                        disponibilidade = "Disponibilidade do Mentor",
-                        localizacao = "Localização do Mentor",
-                        contato = "Contato do Mentor",
-                        fotoResId = R.drawable.baseline_person_24,
-                        navController = navController
-                    )
-                }
+
                 composable(route = "MenuScreen") {
                     MenuScreen(navController)
                 }
-                composable(route = "CarrosselMentorScreen") {
-                    CarrosselMentorScreen(navController)
+                composable(route = "PesquisaUsuarioScreen") {
+                    PesquisaUsuarioScreen(navController)
                 }
+
                 composable(route = "BuscaScreen") {
                     BuscaScreen(navController)
                 }

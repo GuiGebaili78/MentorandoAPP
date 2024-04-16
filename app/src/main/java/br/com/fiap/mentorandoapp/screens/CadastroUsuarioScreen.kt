@@ -5,14 +5,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,27 +16,47 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.components.FormOutlineComponent
-import br.com.fiap.mentorandoapp.dataBase.repository.MentorRepository
-import br.com.fiap.mentorandoapp.model.MentorModel
-import br.com.fiap.mentorandoapp.ui.theme.Verde1
+import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
+import br.com.fiap.mentorandoapp.model.UsuarioModel
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
-import br.com.fiap.mentorandoapp.ui.theme.Verde3
-import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 
 @Composable
-fun CadastroMentorScreen(navController: NavController) {
-    val nomeState = remember { mutableStateOf("") }
-    val formacaoState = remember { mutableStateOf("") }
-    val experienciaState = remember { mutableStateOf("") }
-    val certificacaoState = remember { mutableStateOf("") }
-    val biografiaState = remember { mutableStateOf("") }
-    val disponibilidadeState = remember { mutableStateOf("") }
-    val localizacaoState = remember { mutableStateOf("") }
-    val contatoState = remember { mutableStateOf("") }
+fun CadastroUsuarioScreen(navController: NavController) {
+
+    val nomeState = remember {
+        mutableStateOf("")
+    }
+    val interesseState = remember {
+        mutableStateOf("")
+    }
+    val formacaoState = remember {
+        mutableStateOf("")
+    }
+    val experienciaState = remember {
+        mutableStateOf("")
+    }
+    val objetivoState = remember {
+        mutableStateOf("")
+    }
+    val disponibilidadeState = remember {
+        mutableStateOf("")
+    }
+    val localizacaoState = remember {
+        mutableStateOf("")
+    }
+    val contatoState = remember {
+        mutableStateOf("")
+    }
+    val tipoUsuarioState = remember {
+        mutableStateOf("Aprendiz") // Inicializa como Aprendiz por padrão
+    }
 
     val context = LocalContext.current
-    val mentorRepository = MentorRepository(context)
+    val usuarioRepository = UsuarioRepository(context)
 
     Column(
         modifier = Modifier
@@ -55,9 +70,9 @@ fun CadastroMentorScreen(navController: NavController) {
                 .verticalScroll(
                     state = rememberScrollState()
                 )
-        ) {
+        ){
             Text(
-                text = "Cadastro de Mentores",
+                text = "Cadastro de Usuários",
                 fontSize = 24.sp,
                 color = Verde6,
                 modifier = Modifier
@@ -78,6 +93,19 @@ fun CadastroMentorScreen(navController: NavController) {
                 }
             )
 
+
+            FormOutlineComponent(
+                value = interesseState.value,
+                placeholder = "Tópicos de interesse",
+                label = "Áreas de Interesse",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                keyboardType = KeyboardType.Text,
+                atualizarValor = {novoValor ->
+                    interesseState.value = novoValor
+                }
+            )
             FormOutlineComponent(
                 value = formacaoState.value,
                 placeholder = "Detalhe sua formação acadêmica",
@@ -86,50 +114,34 @@ fun CadastroMentorScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = { novoValor ->
+                atualizarValor = {novoValor ->
                     formacaoState.value = novoValor
                 }
             )
-
             FormOutlineComponent(
                 value = experienciaState.value,
-                placeholder = "Detalhe sua experiência profissional",
-                label = "Experiência Profissional",
+                placeholder = "Experiência nas áreas",
+                label = "Experiência",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = { novoValor ->
+                atualizarValor = {novoValor ->
                     experienciaState.value = novoValor
                 }
             )
-
             FormOutlineComponent(
-                value = certificacaoState.value,
-                placeholder = "Certificações profissionais ou acadêmicas",
-                label = "Certificações",
+                value = objetivoState.value,
+                placeholder = "Detalhe seus objetivos",
+                label = "Objetivos",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = { novoValor ->
-                    certificacaoState.value = novoValor
+                atualizarValor = {novoValor ->
+                    objetivoState.value = novoValor
                 }
             )
-
-            FormOutlineComponent(
-                value = biografiaState.value,
-                placeholder = "Breve biografia",
-                label = "Biografia",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                keyboardType = KeyboardType.Text,
-                atualizarValor = { novoValor ->
-                    biografiaState.value = novoValor
-                }
-            )
-
             FormOutlineComponent(
                 value = disponibilidadeState.value,
                 placeholder = "Datas e horários disponíveis",
@@ -138,11 +150,11 @@ fun CadastroMentorScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = { novoValor ->
+                atualizarValor = {novoValor ->
                     disponibilidadeState.value = novoValor
+
                 }
             )
-
             FormOutlineComponent(
                 value = localizacaoState.value,
                 placeholder = "Localização geográfica",
@@ -151,7 +163,7 @@ fun CadastroMentorScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = { novoValor ->
+                atualizarValor = {novoValor ->
                     localizacaoState.value = novoValor
                 }
             )
@@ -164,10 +176,43 @@ fun CadastroMentorScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = { novoValor ->
+                atualizarValor = {novoValor ->
                     contatoState.value = novoValor
                 }
             )
+
+            // Adicione os outros componentes de formulário aqui
+
+            // Checkbox para selecionar o tipo de usuário (Mentor ou Aprendiz)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(
+                    checked = tipoUsuarioState.value == "Mentor",
+                    onCheckedChange = { checked ->
+                        if (checked) {
+                            tipoUsuarioState.value = "Mentor"
+                        } else {
+                            tipoUsuarioState.value = "Aprendiz"
+                        }
+                    },
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+                Text(text = "Mentor")
+                Spacer(modifier = Modifier.width(16.dp))
+                Checkbox(
+                    checked = tipoUsuarioState.value == "Aprendiz",
+                    onCheckedChange = { checked ->
+                        if (checked) {
+                            tipoUsuarioState.value = "Aprendiz"
+                        } else {
+                            tipoUsuarioState.value = "Mentor"
+                        }
+                    },
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+                Text(text = "Aprendiz")
+            }
+
+
         }
 
         // Botão de navegação
@@ -177,7 +222,7 @@ fun CadastroMentorScreen(navController: NavController) {
                 .height(30.dp)
                 .background(Verde2),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween // Espaçamento entre os elementos
         ) {
             Text(
                 text = "Voltar",
@@ -186,11 +231,9 @@ fun CadastroMentorScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 10.dp)
                     .clickable {
-                        navController.navigate("CadastroScreen")
+                        navController.navigate("LoginScreen")
                     }
             )
-
-            //Botão para cadastrar (opcional)
             Text(
                 text = "Cadastrar",
                 color = Verde6,
@@ -198,37 +241,37 @@ fun CadastroMentorScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(end = 10.dp)
                     .clickable {
-                        val mentor = MentorModel(
+                        val usuario = UsuarioModel(
                             nome = nomeState.value,
+                            interesse = interesseState.value,
                             formacao = formacaoState.value,
-                            atuacao = experienciaState.value,
-                            certificacao = certificacaoState.value,
-                            biografia = biografiaState.value,
+                            experiencia = experienciaState.value,
+                            objetivo = objetivoState.value,
                             disponibilidade = disponibilidadeState.value,
                             localizacao = localizacaoState.value,
-                            contato = contatoState.value
+                            contato = contatoState.value,
+                            tipo_usuario = tipoUsuarioState.value // Usa o tipo de usuário selecionado
                         )
-                        mentorRepository.salvar(mentor)
+                        usuarioRepository.salvar(usuario)
 
                         // Limpa os campos após o cadastro ser realizado com sucesso
                         nomeState.value = ""
+                        interesseState.value = ""
                         formacaoState.value = ""
                         experienciaState.value = ""
-                        certificacaoState.value = ""
-                        biografiaState.value = ""
+                        objetivoState.value = ""
                         disponibilidadeState.value = ""
                         localizacaoState.value = ""
                         contatoState.value = ""
-
+                        tipoUsuarioState.value = "Aprendiz" // Reinicializa o tipo de usuário para Aprendiz
                     }
             )
         }
-
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview (showBackground = true, showSystemUi = true)
 @Composable
-fun CadastroMentorScreenPreview() {
-    CadastroMentorScreen(navController = rememberNavController())
+fun CadastroUsuarioScreenPreview() {
+    CadastroUsuarioScreen(navController = rememberNavController())
 }

@@ -1,28 +1,28 @@
 package br.com.fiap.mentorandoapp.dataBase.dao
 
+
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import br.com.fiap.mentorandoapp.model.AprendizModel
-import br.com.fiap.mentorandoapp.model.MentorModel
+import br.com.fiap.mentorandoapp.model.UsuarioModel
 
-@Database(entities = [MentorModel::class], version = 1)
-abstract class MentorDb : RoomDatabase() {
+@Database(entities = [UsuarioModel::class], version = 1)
+abstract class UsuarioDb : RoomDatabase() {
 
-    abstract fun mentorDao(): MentorDao
+    abstract fun usuarioDao(): UsuarioDao
 
     companion object {
 
-        private lateinit var instance: MentorDb
+        private lateinit var instance: UsuarioDb
 
-        fun getDatabase(context: Context): MentorDb {
+        fun getDatabase(context: Context): UsuarioDb {
             if (!::instance.isInitialized) {
                 instance = Room
                     .databaseBuilder(
                         context,
-                        MentorDb::class.java,
-                        "mentor_db"
+                        UsuarioDb::class.java,
+                        "usuario_db"
                     )
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()

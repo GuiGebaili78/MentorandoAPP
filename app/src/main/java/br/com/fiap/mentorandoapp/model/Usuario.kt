@@ -1,10 +1,10 @@
 package br.com.fiap.mentorandoapp.model
 
-data class Aprendiz(
+data class Usuario(
     val id: Int,
     val nome: String,
-    val interesse: String,
     val formacao: String,
+    val interesse: String,
     val experiencia: String,
     val objetivo: String,
     val disponibilidade: String,

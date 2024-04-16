@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -34,23 +33,19 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.mentorandoapp.Api.fetchAprendizFromApi
+import br.com.fiap.mentorandoapp.Api.fetchUsuarioFromApi
 import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
-import br.com.fiap.mentorandoapp.ui.theme.Verde3
-import br.com.fiap.mentorandoapp.ui.theme.Verde4
-import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun PesquisaAprendizScreen(navController: NavController) {
+fun PesquisaUsuarioScreen(navController: NavController) {
     var interesse by remember { mutableStateOf(listOf<String>()) }
     var localizacao by remember { mutableStateOf(listOf<String>()) }
     var disponibilidade by remember { mutableStateOf(listOf<String>()) }
@@ -62,10 +57,10 @@ fun PesquisaAprendizScreen(navController: NavController) {
     // Função para carregar dados da API e atualizar os filtros
     fun carregarDadosDaApi() {
         CoroutineScope(Dispatchers.Main).launch {
-            val aprendizes = fetchAprendizFromApi()
-            interesse = aprendizes.map { it.interesse }.distinct()
-            localizacao = aprendizes.map { it.localizacao }.distinct()
-            disponibilidade = aprendizes.map { it.disponibilidade }.distinct()
+            val usuarios = fetchUsuarioFromApi()
+            interesse = usuarios.map { it.interesse }.distinct()
+            localizacao = usuarios.map { it.localizacao }.distinct()
+            disponibilidade = usuarios.map { it.disponibilidade }.distinct()
         }
     }
 
@@ -117,7 +112,7 @@ fun PesquisaAprendizScreen(navController: NavController) {
                     LocalStorage.setFilter("interesse", interesseSelecionada)
                     LocalStorage.setFilter("localizacao", localizacaoSelecionada)
                     LocalStorage.setFilter("disponibilidade", disponibilidadeSelecionada)
-                    navController.navigate("CarrosselAprendizScreen")
+                    navController.navigate("CarrosselUsuarioScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde6),
                 modifier = Modifier.shadow(2.dp, shape = RoundedCornerShape(25.dp))
@@ -130,7 +125,7 @@ fun PesquisaAprendizScreen(navController: NavController) {
                     LocalStorage.setFilter("interesse", interesseSelecionada)
                     LocalStorage.setFilter("localizacao", localizacaoSelecionada)
                     LocalStorage.setFilter("disponibilidade", disponibilidadeSelecionada)
-                    navController.navigate("CarrosselAprendizScreen")
+                    navController.navigate("CarrosselUsuarioScreen")
 
 
                 },
@@ -222,6 +217,6 @@ fun CheckboxItem(
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PesquisaAprendizScreenPreview() {
-    PesquisaAprendizScreen(navController = rememberNavController())
+fun PesquisaUsuarioScreenPreview() {
+    PesquisaUsuarioScreen(navController = rememberNavController())
 }

@@ -1,5 +1,4 @@
 package br.com.fiap.mentorandoapp.screens
-
 import BottomNavigation
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -18,58 +17,72 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.mentorandoapp.Api.fetchMentorsFromApi
-import br.com.fiap.mentorandoapp.model.Mentor
-import br.com.fiap.mentorandoapp.ui.theme.Verde2
-import br.com.fiap.mentorandoapp.ui.theme.Verde6
+import br.com.fiap.mentorandoapp.Api.fetchUsuarioFromApi
+import br.com.fiap.mentorandoapp.Api.filtrarUsuario
 import br.com.fiap.mentorandoapp.R
-import br.com.fiap.mentorandoapp.components.MentorCard
+import br.com.fiap.mentorandoapp.components.UsuarioCard
+import br.com.fiap.mentorandoapp.model.Usuario
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
-
+import br.com.fiap.mentorandoapp.ui.theme.Verde2
+import br.com.fiap.mentorandoapp.ui.theme.Verde5
+import br.com.fiap.mentorandoapp.ui.theme.Verde6
 @Composable
-fun CarrosselMentorScreen(
+fun CarrosselUsuarioScreen(
     navController: NavController
 ) {
-    var mentors by remember { mutableStateOf(emptyList<Mentor>()) }
+    var usuarios by remember { mutableStateOf(emptyList<Usuario>()) }
     var currentPage by remember { mutableStateOf(0) }
 
     LaunchedEffect(key1 = true) {
-        mentors = fetchMentorsFromApi()
+        usuarios = fetchUsuarioFromApi()
+        usuarios = filtrarUsuario(fetchUsuarioFromApi())
     }
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(0.2.dp)
+            .padding(0.2.dp),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            mentors.ifEmpty {
-                Text(text = "Carregando mentores...")
-            }
-
-            mentors.getOrNull(currentPage)?.let { mentor ->
-                MentorCard(mentor = mentor)
+            if (usuarios.isEmpty()) {
+                Text(text = "Nenhum usuario encontrado")
+            } else {
+                UsuarioCard(usuario = usuarios[currentPage])
             }
         }
-
-        Row(
+        Button(
+            onClick = {
+                navController.navigate("PesquisaUsuarioScreen")
+            },
+            colors = ButtonDefaults.buttonColors(Verde5),
             modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(bottom = 30.dp),
+                .padding(2.dp)
+                .align(Alignment.CenterHorizontally)
+                .width(140.dp)
+                .shadow(10.dp, shape = RoundedCornerShape(50.dp))
+        ) {
+            Text(
+                text = "Pesquisar",
+                fontSize = 18.sp,
+                color = Verde1
+            )
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(
                 onClick = {
-                    currentPage = (currentPage - 1 + mentors.size) % mentors.size
+                    currentPage = (currentPage - 1 + usuarios.size) % usuarios.size
                 },
                 modifier = Modifier
                     .padding(16.dp)
                     .size(72.dp)
-                    .shadow(4.dp, shape = CircleShape), // Adicionando sombra
+                    .shadow(4.dp, shape = CircleShape),
                 colors = ButtonDefaults.buttonColors(Verde2),
                 shape = CircleShape,
                 content = {
@@ -81,7 +94,6 @@ fun CarrosselMentorScreen(
                     )
                 }
             )
-
             Button(
                 onClick = {
                     // Lógica para o botão do meio (MATCH)
@@ -90,7 +102,7 @@ fun CarrosselMentorScreen(
                     .padding(16.dp)
                     .weight(1f)
                     .height(72.dp)
-                    .shadow(4.dp, shape = RoundedCornerShape(16.dp)), // Adicionando sombra
+                    .shadow(4.dp, shape = RoundedCornerShape(16.dp)),
                 colors = ButtonDefaults.buttonColors(Verde6),
                 shape = RoundedCornerShape(16.dp),
                 content = {
@@ -101,15 +113,14 @@ fun CarrosselMentorScreen(
                     )
                 }
             )
-
             Button(
                 onClick = {
-                    currentPage = (currentPage + 1) % mentors.size
+                    currentPage = (currentPage + 1) % usuarios.size
                 },
                 modifier = Modifier
                     .padding(16.dp)
                     .size(72.dp)
-                    .shadow(4.dp, shape = CircleShape), // Adicionando sombra
+                    .shadow(4.dp, shape = CircleShape),
                 colors = ButtonDefaults.buttonColors(Verde2),
                 shape = CircleShape,
                 content = {
@@ -123,19 +134,15 @@ fun CarrosselMentorScreen(
             )
         }
         Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         ) {
             BottomNavigation(navController = navController)
         }
     }
-
-
 }
-
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun CarrosselMentorScreenPreview() {
+fun CarrosselUsuarioScreenPreview() {
     val navController = rememberNavController()
-    CarrosselMentorScreen(navController = navController)
+    CarrosselUsuarioScreen(navController = navController)
 }

@@ -86,7 +86,7 @@ fun BemVindoScreen(navController: NavController) {
         // Botão "Cadastro"
         Button(
             onClick = {
-                navController.navigate("CadastroScreen")
+                navController.navigate("CadastroUsuarioScreen")
             },
             colors = ButtonDefaults.buttonColors(Verde5),
             modifier = Modifier

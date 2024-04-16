@@ -48,15 +48,15 @@ fun BuscaScreen(navController: NavController) {
         ) {
             // Texto "Cadastre-se"
             Text(
-                text = "Encontre seu mentor ou aprendiz:",
+                text = "Estou buscando por:",
                 fontSize = 18.sp,
                 color = Verde6,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
             Button(
                 onClick = {
-                    LocalStorage.setFilter("tipo_usuario", listOf("mentor"))
-                    navController.navigate("CarrosselAprendizScreen")
+                    LocalStorage.setFilter("tipo_usuario", listOf("Mentor"))
+                    navController.navigate("CarrosselUsuarioScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier
@@ -73,8 +73,8 @@ fun BuscaScreen(navController: NavController) {
 
             Button(
                 onClick = {
-                    LocalStorage.setFilter("tipo_usuario", listOf("aprendiz"))
-                    navController.navigate("CarrosselAprendizScreen")
+                    LocalStorage.setFilter("tipo_usuario", listOf("Aprendiz"))
+                    navController.navigate("CarrosselUsuarioScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier

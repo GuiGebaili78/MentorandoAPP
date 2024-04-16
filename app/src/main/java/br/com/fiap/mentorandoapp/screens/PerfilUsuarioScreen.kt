@@ -3,28 +3,24 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
-import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
 @Composable
-fun PerfilAprendizScreen(
+fun PerfilUsuarioScreen(
     nome: String,
     areasInteresse: String,
     formacaoAcademica: String,
     nivelExperiencia: String,
-    objetivosAprendizagem: String,
+    objetivos: String,
     disponibilidade: String,
     localizacao: String,
     contato: String,
@@ -50,7 +46,7 @@ fun PerfilAprendizScreen(
         PerfilItem(title = "ÁREAS DE INTERESSE", value = areasInteresse)
         PerfilItem(title = "FORMAÇÃO ACADÊMICA", value = formacaoAcademica)
         PerfilItem(title = "NÍVEL DE EXPERIÊNCIA", value = nivelExperiencia)
-        PerfilItem(title = "OBJETIVOS", value = objetivosAprendizagem)
+        PerfilItem(title = "OBJETIVOS", value = objetivos)
         PerfilItem(title = "DISPONIBILIDADE", value = disponibilidade)
         PerfilItem(title = "LOCALIZAÇÃO", value = localizacao)
         PerfilItem(title = "CONTATO", value = contato)
@@ -81,13 +77,13 @@ fun PerfilItem(title: String, value: String) {
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PerfilAprendizScreenPreview() {
-    PerfilAprendizScreen(
+fun PerfilUsuarioScreenPreview() {
+    PerfilUsuarioScreen(
         nome = "João Silva",
         areasInteresse = "Tecnologia, Educação",
         formacaoAcademica = "Bacharel em Ciência da Computação",
         nivelExperiencia = "Avançado",
-        objetivosAprendizagem = "Aprender novas tecnologias",
+        objetivos = "Aprender novas tecnologias",
         disponibilidade = "Segunda a Sexta, 8h às 18h",
         localizacao = "São Paulo, Brasil",
         contato = "joao.silva@example.com",
