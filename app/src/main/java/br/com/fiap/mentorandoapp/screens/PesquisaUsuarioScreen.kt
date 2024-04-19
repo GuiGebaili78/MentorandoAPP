@@ -1,6 +1,7 @@
 package br.com.fiap.mentorandoapp.screens
 
 import BottomNavigation
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,13 +30,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import br.com.fiap.mentorandoapp.Api.fetchUsuarioFromApi
+import br.com.fiap.mentorandoapp.Api.fetchUsuariosFromDb
 import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
@@ -45,7 +47,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun PesquisaUsuarioScreen(navController: NavController) {
+fun PesquisaUsuarioScreen(navController: NavController, context: Context) {
     var interesse by remember { mutableStateOf(listOf<String>()) }
     var localizacao by remember { mutableStateOf(listOf<String>()) }
     var disponibilidade by remember { mutableStateOf(listOf<String>()) }
@@ -57,7 +59,7 @@ fun PesquisaUsuarioScreen(navController: NavController) {
     // Função para carregar dados da API e atualizar os filtros
     fun carregarDadosDaApi() {
         CoroutineScope(Dispatchers.Main).launch {
-            val usuarios = fetchUsuarioFromApi()
+            val usuarios = fetchUsuariosFromDb(context)
             interesse = usuarios.map { it.interesse }.distinct()
             localizacao = usuarios.map { it.localizacao }.distinct()
             disponibilidade = usuarios.map { it.disponibilidade }.distinct()
@@ -218,5 +220,7 @@ fun CheckboxItem(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PesquisaUsuarioScreenPreview() {
-    PesquisaUsuarioScreen(navController = rememberNavController())
+    val navController = rememberNavController()
+    val context = LocalContext.current // Obtenha o contexto local para uso na pré-visualização
+    PesquisaUsuarioScreen(navController = navController, context = context)
 }

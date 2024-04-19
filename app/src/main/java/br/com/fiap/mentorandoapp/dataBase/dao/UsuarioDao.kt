@@ -12,7 +12,7 @@ interface UsuarioDao {
     fun salvar(usuarioModel: UsuarioModel): Long
 
     @Query("SELECT * FROM tbl_usuario WHERE id = :id")
-    fun buscarUsuarioModelPeloId(id: Int): UsuarioModel // Updated data type to Long
+    fun buscarUsuarioModelPeloId(id: Int): UsuarioModel
 
     @Query("SELECT * FROM tbl_usuario ORDER BY nome ASC")
     fun listarUsuarioModel(): List<UsuarioModel>

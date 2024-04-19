@@ -16,13 +16,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.components.FormOutlineComponent
-import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 import br.com.fiap.mentorandoapp.model.UsuarioModel
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 
 @Composable
 fun CadastroUsuarioScreen(navController: NavController) {
@@ -231,7 +231,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(start = 10.dp)
                     .clickable {
-                        navController.navigate("LoginScreen")
+                        navController.navigate("BemVindoScreen")
                     }
             )
             Text(

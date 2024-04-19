@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.com.fiap.mentorandoapp.model.UsuarioModel
 
+
 @Database(entities = [UsuarioModel::class], version = 1)
 abstract class UsuarioDb : RoomDatabase() {
 

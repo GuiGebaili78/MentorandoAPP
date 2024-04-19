@@ -21,14 +21,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import br.com.fiap.mentorandoapp.R
-import br.com.fiap.mentorandoapp.model.Usuario
+import br.com.fiap.mentorandoapp.model.UsuarioModel
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 
 
 
 
 @Composable
-fun UsuarioCard(usuario: Usuario) {
+fun UsuarioCard(usuarioModel: UsuarioModel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,7 +45,7 @@ fun UsuarioCard(usuario: Usuario) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = usuario.nome,
+                text = usuarioModel.nome,
                 fontSize = 24.sp,
                 color = Verde6,
                 modifier = Modifier
@@ -64,13 +64,13 @@ fun UsuarioCard(usuario: Usuario) {
             )
         }
 
-        UsuarioItem(title = "FORMAÇÃO ACADÊMICA", value = usuario.formacao)
-        UsuarioItem(title = "ÁREAS DE INTERESSE", value = usuario.interesse)
-        UsuarioItem(title = "OBJETIVOS", value = usuario.objetivo)
-        UsuarioItem(title = "EXPERIÊNCIA", value = usuario.experiencia)
-        UsuarioItem(title = "DISPONIBILIDADE", value = usuario.disponibilidade)
-        UsuarioItem(title = "LOCALIZAÇÃO", value = usuario.localizacao)
-        UsuarioItem(title = "CONTATO", value = usuario.contato)
+        UsuarioItem(title = "FORMAÇÃO ACADÊMICA", value = usuarioModel.formacao)
+        UsuarioItem(title = "ÁREAS DE INTERESSE", value = usuarioModel.interesse)
+        UsuarioItem(title = "OBJETIVOS", value = usuarioModel.objetivo)
+        UsuarioItem(title = "EXPERIÊNCIA", value = usuarioModel.experiencia)
+        UsuarioItem(title = "DISPONIBILIDADE", value = usuarioModel.disponibilidade)
+        UsuarioItem(title = "LOCALIZAÇÃO", value = usuarioModel.localizacao)
+        UsuarioItem(title = "CONTATO", value = usuarioModel.contato)
 
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -101,7 +101,7 @@ fun UsuarioItem(title: String, value: String) {
 @Preview (showBackground = true, showSystemUi = true)
 @Composable
 fun UsuarioCardPreview() {
-    val sampleUsuario = Usuario(
+    val sampleUsuario = UsuarioModel(
         id = 1,
         nome = "João",
         formacao = "Formação acadêmica relevante",
@@ -114,5 +114,5 @@ fun UsuarioCardPreview() {
         tipo_usuario = "aprendiz"
     )
 
-    UsuarioCard(usuario = sampleUsuario)
+    UsuarioCard(usuarioModel = sampleUsuario)
 }

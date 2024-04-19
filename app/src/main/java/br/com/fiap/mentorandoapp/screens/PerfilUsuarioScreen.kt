@@ -33,7 +33,7 @@ fun PerfilUsuarioScreen(
             .padding(4.dp)
             .background(color = Color.White, shape = RoundedCornerShape(8.dp))
             .shadow(2.dp, shape = RoundedCornerShape(3.dp))
-            .padding(16.dp)
+
     ) {
         Text(
             text = "Seu Perfil",
@@ -50,6 +50,15 @@ fun PerfilUsuarioScreen(
         PerfilItem(title = "DISPONIBILIDADE", value = disponibilidade)
         PerfilItem(title = "LOCALIZAÇÃO", value = localizacao)
         PerfilItem(title = "CONTATO", value = contato)
+
+        // Adiciona um espaço flexível para mover o BottomNavigation para o final da tela
+        Spacer(modifier = Modifier.weight(1f))
+
+        // BottomNavigation
+        BottomNavigation(
+            modifier = Modifier.height(56.dp),
+            navController = navController
+        )
     }
 }
 

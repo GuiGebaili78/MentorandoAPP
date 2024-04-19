@@ -1,8 +1,9 @@
+/*
 package br.com.fiap.mentorandoapp.Api
 
 import android.util.Log
 import br.com.fiap.mentorandoapp.components.LocalStorage
-import br.com.fiap.mentorandoapp.model.Usuario
+import br.com.fiap.mentorandoapp.model.UsuarioModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -12,20 +13,20 @@ import org.json.JSONArray
 
 
 
-suspend fun fetchUsuarioFromApi(): List<Usuario> {
+suspend fun fetchUsuarioFromApi(): List<UsuarioModel> {
     return withContext(Dispatchers.IO) {
         try {
             val client = OkHttpClient.Builder().build()
             val request = Request.Builder()
-                .url("https://660c75dd3a0766e85dbe2694.mockapi.io/api/v1/usuario")
+                .url("https://660c75dd3a0766e85dbe2694.mockapi.io/api/v1/usuarioModel")
                 .build()
             val response = client.newCall(request).execute()
             val responseBody = response.body?.string()
             val jsonArray = JSONArray(responseBody)
-            val usuarioList = mutableListOf<Usuario>()
+            val usuarioList = mutableListOf<UsuarioModel>()
             for (i in 0 until jsonArray.length()) {
                 val usuarioObject = jsonArray.getJSONObject(i)
-                val usuario = Usuario(
+                val usuario = UsuarioModel(
                     id = usuarioObject.getInt("id"),
                     nome = usuarioObject.getString("nome"),
                     formacao = usuarioObject.getString("formacao"),
@@ -50,7 +51,7 @@ suspend fun fetchUsuarioFromApi(): List<Usuario> {
     }
 }
 
-fun filtrarUsuario(usuariosApi: List<Usuario>): List<Usuario> {
+fun filtrarUsuario(usuariosApi: List<UsuarioModel>): List<UsuarioModel> {
     val filtroInteresse = LocalStorage.getFilter("interesse")
     val filtroTipoUsuario = LocalStorage.getFilter("tipo_usuario")
     val filtroLocalizacao = LocalStorage.getFilter("localizacao")
@@ -70,5 +71,6 @@ fun filtrarUsuario(usuariosApi: List<Usuario>): List<Usuario> {
 
 
 
+*/
 
 
