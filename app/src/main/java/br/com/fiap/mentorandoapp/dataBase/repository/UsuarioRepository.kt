@@ -19,5 +19,9 @@ class UsuarioRepository(context: Context) {
     fun buscarUsuarioModelPeloId(id: Int): UsuarioModel {
         return db.buscarUsuarioModelPeloId(id)
     }
+
+    fun usuarioLogin(email: String, password: String): UsuarioModel {
+        return db.usuarioLogin(email, password)
+    }
 }
 

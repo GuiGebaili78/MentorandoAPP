@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -29,12 +30,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import br.com.fiap.mentorandoapp.dataBase.repository.MatchRepository
+import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 
 @Composable
 fun BemVindoScreen(navController: NavController) {
+
+    val context = LocalContext.current
+    val usuarioRepository = UsuarioRepository(context)
+    val matchRepository = MatchRepository(context)
+
     Column(
         modifier = Modifier
             .fillMaxSize()

@@ -2,6 +2,7 @@ package br.com.fiap.mentorandoapp.screens
 
 import BottomNavigation
 import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,7 +24,11 @@ import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Api.fetchUsuariosFromDb
 import br.com.fiap.mentorandoapp.Api.filtrarUsuario
 import br.com.fiap.mentorandoapp.R
+import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.components.UsuarioCard
+import br.com.fiap.mentorandoapp.dataBase.repository.MatchRepository
+import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
+import br.com.fiap.mentorandoapp.model.MatchModel
 import br.com.fiap.mentorandoapp.model.UsuarioModel
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
@@ -37,6 +42,9 @@ fun CarrosselUsuarioScreen(
 ) {
     var usuarios by remember { mutableStateOf(emptyList<UsuarioModel>()) }
     var currentPage by remember { mutableStateOf(0) }
+
+    val context = LocalContext.current
+    val matchRepository = MatchRepository(context)
 
     LaunchedEffect(key1 = true) {
         val usuariosFromDb = fetchUsuariosFromDb(context) // Use o contexto fornecido
@@ -104,6 +112,44 @@ fun CarrosselUsuarioScreen(
             Button(
                 onClick = {
                     // Lógica para o botão do meio (MATCH)
+                    val tipo_usuario = LocalStorage.getFilter("tipo_usuario")!![0]
+                    var usuario_id = usuarios[currentPage].id
+                    var meu_id = LocalStorage.getFilter("usuario_logado")!![0].toInt()
+                    var match: MatchModel? = null
+                    var novo_match: MatchModel? = null
+
+                    if (tipo_usuario == "Mentor") {
+                        match = matchRepository.buscarMatchAprendiz(meu_id, usuario_id)
+                        if (match == null) {
+                            novo_match = MatchModel(
+                                aprendiz_id = meu_id,
+                                mentor_id = usuario_id,
+                                aprendiz_liked = true,
+                                mentor_liked = false
+                            )
+                            matchRepository.salvar(novo_match)
+                        }
+
+                    }else {
+                        match = matchRepository.buscarMatchMentor(meu_id, usuario_id)
+                        if (match == null) {
+                            novo_match = MatchModel(
+                                aprendiz_id = usuario_id,
+                                mentor_id = meu_id,
+                                aprendiz_liked = false,
+                                mentor_liked = true
+                            )
+                            matchRepository.salvar(novo_match)
+                        }
+
+                    }
+
+                    if (match != null) {
+                        Log.d("UsuarioApi", "DEU MATCH!!!!!: ${match.toString()}")
+                    }
+
+
+
                 },
                 modifier = Modifier
                     .padding(16.dp)

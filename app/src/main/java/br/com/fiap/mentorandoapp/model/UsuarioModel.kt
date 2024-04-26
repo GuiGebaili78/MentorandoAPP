@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "tbl_usuario")
 data class UsuarioModel (
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    var email: String = "",
+    var password: String = "",
     var nome: String = "",
     var interesse: String = "",
     var formacao: String = "",

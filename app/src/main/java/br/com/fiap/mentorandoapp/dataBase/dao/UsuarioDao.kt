@@ -14,8 +14,13 @@ interface UsuarioDao {
     @Query("SELECT * FROM tbl_usuario WHERE id = :id")
     fun buscarUsuarioModelPeloId(id: Int): UsuarioModel
 
+    @Query("SELECT * FROM tbl_usuario WHERE email = :email AND password = :password")
+    fun usuarioLogin(email: String, password: String): UsuarioModel
+
     @Query("SELECT * FROM tbl_usuario ORDER BY nome ASC")
     fun listarUsuarioModel(): List<UsuarioModel>
+
+
 }
 
 

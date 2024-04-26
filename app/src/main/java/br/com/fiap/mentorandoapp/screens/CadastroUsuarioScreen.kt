@@ -27,6 +27,12 @@ import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 @Composable
 fun CadastroUsuarioScreen(navController: NavController) {
 
+    val emailState = remember {
+        mutableStateOf("")
+    }
+    val passwordState = remember {
+        mutableStateOf("")
+    }
     val nomeState = remember {
         mutableStateOf("")
     }
@@ -78,6 +84,31 @@ fun CadastroUsuarioScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.CenterHorizontally)
+            )
+
+            FormOutlineComponent(
+                value = emailState.value,
+                placeholder = "Digite seu email",
+                label = "Email",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                keyboardType = KeyboardType.Text,
+                atualizarValor = { novoValor ->
+                    emailState.value = novoValor
+                }
+            )
+            FormOutlineComponent(
+                value = passwordState.value,
+                placeholder = "Digite sua senha",
+                label = "Senha",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                keyboardType = KeyboardType.Text,
+                atualizarValor = { novoValor ->
+                    passwordState.value = novoValor
+                }
             )
 
             FormOutlineComponent(
@@ -242,6 +273,8 @@ fun CadastroUsuarioScreen(navController: NavController) {
                     .padding(end = 10.dp)
                     .clickable {
                         val usuario = UsuarioModel(
+                            email = emailState.value,
+                            password = passwordState.value,
                             nome = nomeState.value,
                             interesse = interesseState.value,
                             formacao = formacaoState.value,
@@ -255,6 +288,8 @@ fun CadastroUsuarioScreen(navController: NavController) {
                         usuarioRepository.salvar(usuario)
 
                         // Limpa os campos após o cadastro ser realizado com sucesso
+                        emailState.value = ""
+                        passwordState.value = ""
                         nomeState.value = ""
                         interesseState.value = ""
                         formacaoState.value = ""

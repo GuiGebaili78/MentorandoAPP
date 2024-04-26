@@ -21,6 +21,7 @@ suspend fun fetchUsuariosFromDb(context: Context): List<UsuarioModel> {
             val filtroTipoUsuario = LocalStorage.getFilter("tipo_usuario")
             val filtroLocalizacao = LocalStorage.getFilter("localizacao")
             val filtroDisponibilidade = LocalStorage.getFilter("disponibilidade")
+            val filtroMeusMatchs = LocalStorage.getFilter("meus_matchs")
 
             usuario.filter { usuario ->
                 val interesseValido = filtroInteresse.isNullOrEmpty() || filtroInteresse.contains(usuario.interesse)
@@ -28,7 +29,9 @@ suspend fun fetchUsuariosFromDb(context: Context): List<UsuarioModel> {
                 val localizacaoValida = filtroLocalizacao.isNullOrEmpty() || filtroLocalizacao.contains(usuario.localizacao)
                 val disponibilidadeValida = filtroDisponibilidade.isNullOrEmpty() || filtroDisponibilidade.contains(usuario.disponibilidade)
 
-                interesseValido && tipoUsuarioValido && localizacaoValida && disponibilidadeValida
+                val naoEstaNosMeusMatchs = filtroMeusMatchs.isNullOrEmpty() || !filtroMeusMatchs.contains(usuario.id.toString())
+
+                interesseValido && tipoUsuarioValido && localizacaoValida && disponibilidadeValida && naoEstaNosMeusMatchs
             }
         } catch (e: Exception) {
             Log.e("UsuarioDb", "Erro ao buscar usuários no banco de dados: ${e.message}")
