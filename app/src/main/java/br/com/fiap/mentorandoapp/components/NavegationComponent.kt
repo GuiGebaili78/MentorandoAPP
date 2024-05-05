@@ -21,7 +21,8 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde3
 @Composable
 fun BottomNavigation(
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+
 ) {
     Row(
         modifier = modifier

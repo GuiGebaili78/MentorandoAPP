@@ -1,6 +1,7 @@
 package br.com.fiap.mentorandoapp
 
 import LoginScreen
+import NotificacaoScreen
 import PerfilUsuarioScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -64,8 +65,9 @@ fun MentorandoApp() {
                 }
 
                 composable(route = "NotificacaoScreen") {
-                    NotificacaoScreen(navController)
+                    NotificacaoScreen(messages = listOf("Você recebeu uma nova notificação"), onClose = {}, navController = rememberNavController())
                 }
+
 
                 composable(route = "PerfilUsuarioScreen") {
                     PerfilUsuarioScreen(
