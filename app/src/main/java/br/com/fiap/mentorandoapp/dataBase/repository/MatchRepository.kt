@@ -37,5 +37,8 @@ class MatchRepository(context: Context) {
     fun buscarMatchMentor(meu_id: Int, aprendiz_id: Int): MatchModel {
         return db.buscarMatchMentor(meu_id, aprendiz_id)
     }
+    fun realizarMatch(match_id: Int) {
+        db.realizarMatch(match_id)
+    }
 }
 

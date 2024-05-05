@@ -29,6 +29,9 @@ interface MatchDao {
 
     @Query("SELECT aprendiz_id FROM tbl_match WHERE mentor_id = :meu_id AND aprendiz_liked = 1 AND mentor_liked = 1")
     fun obterMatchsDoMentor(meu_id: Int): List<Int>
+
+    @Query("UPDATE tbl_match SET aprendiz_liked = 1, mentor_liked = 1 WHERE id = :match_id")
+    fun realizarMatch(match_id: Int)
 }
 
 

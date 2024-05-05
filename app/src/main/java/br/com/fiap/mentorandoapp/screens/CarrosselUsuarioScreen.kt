@@ -1,6 +1,7 @@
 package br.com.fiap.mentorandoapp.screens
 
 import BottomNavigation
+import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.layout.*
@@ -19,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Api.fetchUsuariosFromDb
@@ -34,6 +36,9 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
+
 
 @Composable
 fun CarrosselUsuarioScreen(
@@ -46,11 +51,30 @@ fun CarrosselUsuarioScreen(
     val context = LocalContext.current
     val matchRepository = MatchRepository(context)
 
+    // Função para simular o match e mostrar o conteúdo
+    fun realizarMatch() {
+        // Crie e exiba o AlertDialog
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("DEU MATCH!")
+        builder.setMessage("Acesse o menu notificações")
+        builder.setPositiveButton("OK") { dialog, _ ->
+            // Opcional: ação a ser realizada ao clicar no botão OK
+            dialog.dismiss() // Fechar o AlertDialog
+            usuarios = usuarios.toMutableList().apply {
+                removeAt(currentPage)
+            }
+            currentPage = (currentPage + 1) % usuarios.size
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
     LaunchedEffect(key1 = true) {
         val usuariosFromDb = fetchUsuariosFromDb(context) // Use o contexto fornecido
         val usuariosFiltrados = filtrarUsuario(usuariosFromDb)
         usuarios = usuariosFiltrados
     }
+
 
 
     Column(
@@ -59,6 +83,7 @@ fun CarrosselUsuarioScreen(
             .padding(0.2.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
+
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -128,9 +153,11 @@ fun CarrosselUsuarioScreen(
                                 mentor_liked = false
                             )
                             matchRepository.salvar(novo_match)
+                        } else {
+                            matchRepository.realizarMatch(match.id)
                         }
 
-                    }else {
+                    } else {
                         match = matchRepository.buscarMatchMentor(meu_id, usuario_id)
                         if (match == null) {
                             novo_match = MatchModel(
@@ -140,15 +167,16 @@ fun CarrosselUsuarioScreen(
                                 mentor_liked = true
                             )
                             matchRepository.salvar(novo_match)
+                        } else {
+                            matchRepository.realizarMatch(match.id)
                         }
 
                     }
 
                     if (match != null) {
                         Log.d("UsuarioApi", "DEU MATCH!!!!!: ${match.toString()}")
+                        realizarMatch()
                     }
-
-
 
                 },
                 modifier = Modifier
@@ -191,8 +219,13 @@ fun CarrosselUsuarioScreen(
         ) {
             BottomNavigation(navController = navController)
         }
+
     }
+
+
 }
+
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
