@@ -11,7 +11,7 @@ import okhttp3.Request
 import org.json.JSONArray
 
 
-
+    // AQUI FIZEMOS A LIGAÇÃO COM O MOCKAPI.IO PARA TESTES
 
 suspend fun fetchUsuarioFromApi(): List<UsuarioModel> {
     return withContext(Dispatchers.IO) {

@@ -1,6 +1,6 @@
 package br.com.fiap.mentorandoapp.screens
 
-import BottomNavigation
+
 import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
@@ -20,25 +20,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.Api.fetchUsuariosFromDb
 import br.com.fiap.mentorandoapp.Api.filtrarUsuario
 import br.com.fiap.mentorandoapp.R
+import br.com.fiap.mentorandoapp.components.BottomNavigation
 import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.components.UsuarioCard
 import br.com.fiap.mentorandoapp.dataBase.repository.MatchRepository
-import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 import br.com.fiap.mentorandoapp.model.MatchModel
 import br.com.fiap.mentorandoapp.model.UsuarioModel
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-
 
 @Composable
 fun CarrosselUsuarioScreen(
@@ -74,8 +70,6 @@ fun CarrosselUsuarioScreen(
         val usuariosFiltrados = filtrarUsuario(usuariosFromDb)
         usuarios = usuariosFiltrados
     }
-
-
 
     Column(
         modifier = Modifier
@@ -222,9 +216,7 @@ fun CarrosselUsuarioScreen(
 
     }
 
-
 }
-
 
 
 @Preview(showBackground = true, showSystemUi = true)

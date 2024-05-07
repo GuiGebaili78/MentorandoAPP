@@ -1,5 +1,7 @@
 package br.com.fiap.mentorandoapp.components
 
+//Localstorage
+
 object LocalStorage {
     private val storage: MutableMap<String, List<String>> = mutableMapOf()
 

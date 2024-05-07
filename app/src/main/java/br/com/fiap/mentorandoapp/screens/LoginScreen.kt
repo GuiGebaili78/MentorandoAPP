@@ -1,3 +1,5 @@
+package br.com.fiap.mentorandoapp.screens
+
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -26,8 +28,6 @@ import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.dataBase.repository.MatchRepository
 import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
-import br.com.fiap.mentorandoapp.ui.theme.Verde3
-import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
@@ -92,7 +92,7 @@ fun LoginScreen(
                     var meus_matchs: List<Int>? = null
                     if (usuario.tipo_usuario == "Aprendiz") {
                         meus_matchs = matchRepository.obterMatchsDoAprendiz(usuario.id)
-                    }else {
+                    } else {
                         meus_matchs = matchRepository.obterMatchsDoMentor(usuario.id)
                     }
 
@@ -101,7 +101,7 @@ fun LoginScreen(
 
 
                     LocalStorage.setFilter("usuario_logado", listOf(usuario.id.toString()))
-                    LocalStorage.setFilter("meus_matchs", meus_matchs.map{ it.toString()})
+                    LocalStorage.setFilter("meus_matchs", meus_matchs.map { it.toString() })
                     onLogin(email, password)
                     // Navegue para a próxima tela após o login
                     navController.navigate("BuscaScreen")

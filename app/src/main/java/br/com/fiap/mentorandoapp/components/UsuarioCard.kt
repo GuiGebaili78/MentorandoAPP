@@ -1,7 +1,5 @@
 package br.com.fiap.mentorandoapp.components
 
-
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -24,8 +22,7 @@ import br.com.fiap.mentorandoapp.R
 import br.com.fiap.mentorandoapp.model.UsuarioModel
 import br.com.fiap.mentorandoapp.ui.theme.Verde3
 
-
-
+//Card que aparece dentro do carrossel
 
 @Composable
 fun UsuarioCard(usuarioModel: UsuarioModel) {
@@ -98,7 +95,7 @@ fun UsuarioItem(title: String, value: String) {
     }
 }
 
-@Preview (showBackground = true, showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun UsuarioCardPreview() {
     val sampleUsuario = UsuarioModel(

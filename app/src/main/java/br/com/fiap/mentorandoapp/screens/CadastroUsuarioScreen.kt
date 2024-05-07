@@ -21,7 +21,6 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 
 @Composable
@@ -76,7 +75,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                 .verticalScroll(
                     state = rememberScrollState()
                 )
-        ){
+        ) {
             Text(
                 text = "Cadastro de Usuários",
                 fontSize = 24.sp,
@@ -133,7 +132,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = {novoValor ->
+                atualizarValor = { novoValor ->
                     interesseState.value = novoValor
                 }
             )
@@ -145,7 +144,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = {novoValor ->
+                atualizarValor = { novoValor ->
                     formacaoState.value = novoValor
                 }
             )
@@ -157,7 +156,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = {novoValor ->
+                atualizarValor = { novoValor ->
                     experienciaState.value = novoValor
                 }
             )
@@ -169,7 +168,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = {novoValor ->
+                atualizarValor = { novoValor ->
                     objetivoState.value = novoValor
                 }
             )
@@ -181,7 +180,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = {novoValor ->
+                atualizarValor = { novoValor ->
                     disponibilidadeState.value = novoValor
 
                 }
@@ -194,7 +193,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = {novoValor ->
+                atualizarValor = { novoValor ->
                     localizacaoState.value = novoValor
                 }
             )
@@ -207,7 +206,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
                     .fillMaxWidth()
                     .padding(16.dp),
                 keyboardType = KeyboardType.Text,
-                atualizarValor = {novoValor ->
+                atualizarValor = { novoValor ->
                     contatoState.value = novoValor
                 }
             )
@@ -298,14 +297,15 @@ fun CadastroUsuarioScreen(navController: NavController) {
                         disponibilidadeState.value = ""
                         localizacaoState.value = ""
                         contatoState.value = ""
-                        tipoUsuarioState.value = "Aprendiz" // Reinicializa o tipo de usuário para Aprendiz
+                        tipoUsuarioState.value =
+                            "Aprendiz" // Reinicializa o tipo de usuário para Aprendiz
                     }
             )
         }
     }
 }
 
-@Preview (showBackground = true, showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun CadastroUsuarioScreenPreview() {
     CadastroUsuarioScreen(navController = rememberNavController())

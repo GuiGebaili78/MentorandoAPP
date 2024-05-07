@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
-import br.com.fiap.mentorandoapp.ui.theme.Verde4
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 
@@ -72,7 +71,10 @@ fun MenuScreen(navController: NavController) {
                     .padding(horizontal = 16.dp)
                     .width(250.dp)
                     .padding(top = 16.dp)
-                    .shadow(10.dp, shape = RoundedCornerShape(50.dp))// Adicionando padding entre os botões
+                    .shadow(
+                        10.dp,
+                        shape = RoundedCornerShape(50.dp)
+                    )// Adicionando padding entre os botões
             ) {
                 Text(
                     text = "APRENDIZ",

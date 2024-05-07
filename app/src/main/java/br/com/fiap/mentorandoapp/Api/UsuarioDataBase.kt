@@ -24,12 +24,17 @@ suspend fun fetchUsuariosFromDb(context: Context): List<UsuarioModel> {
             val filtroMeusMatchs = LocalStorage.getFilter("meus_matchs")
 
             usuario.filter { usuario ->
-                val interesseValido = filtroInteresse.isNullOrEmpty() || filtroInteresse.contains(usuario.interesse)
-                val tipoUsuarioValido = filtroTipoUsuario.isNullOrEmpty() || filtroTipoUsuario.contains(usuario.tipo_usuario)
-                val localizacaoValida = filtroLocalizacao.isNullOrEmpty() || filtroLocalizacao.contains(usuario.localizacao)
-                val disponibilidadeValida = filtroDisponibilidade.isNullOrEmpty() || filtroDisponibilidade.contains(usuario.disponibilidade)
+                val interesseValido =
+                    filtroInteresse.isNullOrEmpty() || filtroInteresse.contains(usuario.interesse)
+                val tipoUsuarioValido =
+                    filtroTipoUsuario.isNullOrEmpty() || filtroTipoUsuario.contains(usuario.tipo_usuario)
+                val localizacaoValida =
+                    filtroLocalizacao.isNullOrEmpty() || filtroLocalizacao.contains(usuario.localizacao)
+                val disponibilidadeValida =
+                    filtroDisponibilidade.isNullOrEmpty() || filtroDisponibilidade.contains(usuario.disponibilidade)
 
-                val naoEstaNosMeusMatchs = filtroMeusMatchs.isNullOrEmpty() || !filtroMeusMatchs.contains(usuario.id.toString())
+                val naoEstaNosMeusMatchs =
+                    filtroMeusMatchs.isNullOrEmpty() || !filtroMeusMatchs.contains(usuario.id.toString())
 
                 interesseValido && tipoUsuarioValido && localizacaoValida && disponibilidadeValida && naoEstaNosMeusMatchs
             }
@@ -39,6 +44,7 @@ suspend fun fetchUsuariosFromDb(context: Context): List<UsuarioModel> {
         }
     }
 }
+
 // Função para filtrar os usuários (mantida para aplicar filtros se necessário)
 fun filtrarUsuario(usuarioDb: List<UsuarioModel>): List<UsuarioModel> {
     val filtroInteresse = LocalStorage.getFilter("interesse")
@@ -46,7 +52,8 @@ fun filtrarUsuario(usuarioDb: List<UsuarioModel>): List<UsuarioModel> {
     val filtroDisponibilidade = LocalStorage.getFilter("disponibilidade")
 
     // Verifica se há algum filtro aplicado
-    val filtroAplicado = filtroInteresse.isNullOrEmpty() && filtroLocalizacao.isNullOrEmpty() && filtroDisponibilidade.isNullOrEmpty()
+    val filtroAplicado =
+        filtroInteresse.isNullOrEmpty() && filtroLocalizacao.isNullOrEmpty() && filtroDisponibilidade.isNullOrEmpty()
 
     return if (filtroAplicado) {
         // Se nenhum filtro foi aplicado, retorna a lista completa sem filtrar
@@ -54,9 +61,12 @@ fun filtrarUsuario(usuarioDb: List<UsuarioModel>): List<UsuarioModel> {
     } else {
         // Se algum filtro foi aplicado, aplica apenas os filtros nos campos relevantes
         usuarioDb.filter { usuario: UsuarioModel ->
-            val interesseValido = filtroInteresse.isNullOrEmpty() || filtroInteresse.contains(usuario.interesse)
-            val localizacaoValida = filtroLocalizacao.isNullOrEmpty() || filtroLocalizacao.contains(usuario.localizacao)
-            val disponibilidadeValida = filtroDisponibilidade.isNullOrEmpty() || filtroDisponibilidade.contains(usuario.disponibilidade)
+            val interesseValido =
+                filtroInteresse.isNullOrEmpty() || filtroInteresse.contains(usuario.interesse)
+            val localizacaoValida =
+                filtroLocalizacao.isNullOrEmpty() || filtroLocalizacao.contains(usuario.localizacao)
+            val disponibilidadeValida =
+                filtroDisponibilidade.isNullOrEmpty() || filtroDisponibilidade.contains(usuario.disponibilidade)
 
             interesseValido && localizacaoValida && disponibilidadeValida
         }
