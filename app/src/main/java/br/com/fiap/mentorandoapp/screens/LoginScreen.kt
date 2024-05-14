@@ -92,8 +92,10 @@ fun LoginScreen(
                     var meus_matchs: List<Int>? = null
                     if (usuario.tipo_usuario == "Aprendiz") {
                         meus_matchs = matchRepository.obterMatchsDoAprendiz(usuario.id)
+                        LocalStorage.setFilter("tipo_usuario", listOf("Mentor"))
                     } else {
                         meus_matchs = matchRepository.obterMatchsDoMentor(usuario.id)
+                        LocalStorage.setFilter("tipo_usuario", listOf("Aprendiz"))
                     }
 
                     Log.d("UsuarioApi", "MEUS MATCH!!!!!: ${meus_matchs.toString()}")
@@ -103,8 +105,9 @@ fun LoginScreen(
                     LocalStorage.setFilter("usuario_logado", listOf(usuario.id.toString()))
                     LocalStorage.setFilter("meus_matchs", meus_matchs.map { it.toString() })
                     onLogin(email, password)
-                    // Navegue para a próxima tela após o login
-                    navController.navigate("BuscaScreen")
+
+                    // ir para home
+                    navController.navigate("CarrosselUsuarioScreen")
                 },
                 colors = ButtonDefaults.buttonColors(Verde5),
                 modifier = Modifier

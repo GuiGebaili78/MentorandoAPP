@@ -29,12 +29,16 @@ import br.com.fiap.mentorandoapp.components.BottomNavigation
 import br.com.fiap.mentorandoapp.components.LocalStorage
 import br.com.fiap.mentorandoapp.components.UsuarioCard
 import br.com.fiap.mentorandoapp.dataBase.repository.MatchRepository
+import br.com.fiap.mentorandoapp.dataBase.repository.NotificationRepository
+import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 import br.com.fiap.mentorandoapp.model.MatchModel
+import br.com.fiap.mentorandoapp.model.NotificationModel
 import br.com.fiap.mentorandoapp.model.UsuarioModel
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde5
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
+import java.lang.Exception
 
 @Composable
 fun CarrosselUsuarioScreen(
@@ -46,20 +50,49 @@ fun CarrosselUsuarioScreen(
 
     val context = LocalContext.current
     val matchRepository = MatchRepository(context)
+    val usuarioRepository = UsuarioRepository(context)
+    val notificationRepository = NotificationRepository(context)
 
     // Função para simular o match e mostrar o conteúdo
-    fun realizarMatch() {
+    fun realizarMatch(meu_id: Int, usuario_id: Int) {
+
+        // obter usuarios
+        var meu_usuario = usuarioRepository.buscarUsuarioModelPeloId(meu_id)
+        var outro_usuario = usuarioRepository.buscarUsuarioModelPeloId(usuario_id)
+
+
         // Crie e exiba o AlertDialog
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("DEU MATCH!")
+        builder.setTitle("[Match] " + outro_usuario.nome + "!!")
         builder.setMessage("Acesse o menu notificações")
+
+        // registrar notificacao para mim
+        var nm = NotificationModel(
+            usuario_id = meu_id,
+            nome = outro_usuario.nome,
+            contato = outro_usuario.contato
+        )
+        notificationRepository.salvar(nm)
+
+        // registrar notificacao para o outro
+        var nm2 = NotificationModel(
+            usuario_id = outro_usuario.id,
+            nome = meu_usuario.nome,
+            contato = meu_usuario.contato
+        )
+        notificationRepository.salvar(nm2)
+
+        // mostrar alert
         builder.setPositiveButton("OK") { dialog, _ ->
-            // Opcional: ação a ser realizada ao clicar no botão OK
-            dialog.dismiss() // Fechar o AlertDialog
+            dialog.dismiss()
             usuarios = usuarios.toMutableList().apply {
                 removeAt(currentPage)
             }
-            currentPage = (currentPage + 1) % usuarios.size
+            try {
+                currentPage = (currentPage + 1) % usuarios.size
+            } catch (e: Exception) {
+            }
+
         }
         val dialog = builder.create()
         dialog.show()
@@ -148,7 +181,11 @@ fun CarrosselUsuarioScreen(
                             )
                             matchRepository.salvar(novo_match)
                         } else {
-                            matchRepository.realizarMatch(match.id)
+                            if (match.mentor_liked == true) {
+                                matchRepository.realizarMatch(match.id)
+                                realizarMatch(meu_id, usuarios[currentPage].id)
+                            }
+
                         }
 
                     } else {
@@ -162,14 +199,12 @@ fun CarrosselUsuarioScreen(
                             )
                             matchRepository.salvar(novo_match)
                         } else {
-                            matchRepository.realizarMatch(match.id)
+                            if (match.aprendiz_liked == true) {
+                                matchRepository.realizarMatch(match.id)
+                                realizarMatch(meu_id, usuarios[currentPage].id)
+                            }
                         }
 
-                    }
-
-                    if (match != null) {
-                        Log.d("UsuarioApi", "DEU MATCH!!!!!: ${match.toString()}")
-                        realizarMatch()
                     }
 
                 },

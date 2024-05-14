@@ -1,5 +1,6 @@
 package br.com.fiap.mentorandoapp.screens
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,6 +22,8 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde6
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
+import br.com.fiap.mentorandoapp.components.LocalStorage
+import br.com.fiap.mentorandoapp.dataBase.repository.MatchRepository
 import br.com.fiap.mentorandoapp.dataBase.repository.UsuarioRepository
 
 @Composable
@@ -62,6 +65,7 @@ fun CadastroUsuarioScreen(navController: NavController) {
 
     val context = LocalContext.current
     val usuarioRepository = UsuarioRepository(context)
+    val matchRepository = MatchRepository(context)
 
     Column(
         modifier = Modifier
@@ -286,19 +290,22 @@ fun CadastroUsuarioScreen(navController: NavController) {
                         )
                         usuarioRepository.salvar(usuario)
 
-                        // Limpa os campos após o cadastro ser realizado com sucesso
-                        emailState.value = ""
-                        passwordState.value = ""
-                        nomeState.value = ""
-                        interesseState.value = ""
-                        formacaoState.value = ""
-                        experienciaState.value = ""
-                        objetivoState.value = ""
-                        disponibilidadeState.value = ""
-                        localizacaoState.value = ""
-                        contatoState.value = ""
-                        tipoUsuarioState.value =
-                            "Aprendiz" // Reinicializa o tipo de usuário para Aprendiz
+                        // conectar usuario
+                        var getUsuario = usuarioRepository.usuarioLogin(usuario.email, usuario.password)
+                        var meus_matchs: List<Int>? = null
+                        if (getUsuario.tipo_usuario == "Aprendiz") {
+                            meus_matchs = matchRepository.obterMatchsDoAprendiz(getUsuario.id)
+                            LocalStorage.setFilter("tipo_usuario", listOf("Mentor"))
+                        } else {
+                            meus_matchs = matchRepository.obterMatchsDoMentor(getUsuario.id)
+                            LocalStorage.setFilter("tipo_usuario", listOf("Aprendiz"))
+                        }
+
+                        LocalStorage.setFilter("usuario_logado", listOf(getUsuario.id.toString()))
+                        LocalStorage.setFilter("meus_matchs", meus_matchs.map { it.toString() })
+
+                        // ir para home
+                        navController.navigate("CarrosselUsuarioScreen")
                     }
             )
         }

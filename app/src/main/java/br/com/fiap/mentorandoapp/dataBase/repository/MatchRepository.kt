@@ -1,12 +1,12 @@
 package br.com.fiap.mentorandoapp.dataBase.repository
 
 import android.content.Context
-import br.com.fiap.mentorandoapp.dataBase.dao.MatchDb
+import br.com.fiap.mentorandoapp.dataBase.dao.DbConfig
 import br.com.fiap.mentorandoapp.model.MatchModel
 
 class MatchRepository(context: Context) {
 
-    private val db = MatchDb.getDatabase(context).matchDao()
+    private val db = DbConfig.getDatabase(context).matchDao()
 
     fun salvar(matchModel: MatchModel): Long {
         return db.salvar(matchModel)

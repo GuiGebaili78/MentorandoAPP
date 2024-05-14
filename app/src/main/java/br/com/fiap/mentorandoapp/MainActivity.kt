@@ -64,7 +64,6 @@ fun MentorandoApp() {
 
                 composable(route = "NotificacaoScreen") {
                     NotificacaoScreen(
-                        messages = listOf("Você recebeu uma nova notificação"),
                         onClose = {},
                         navController = rememberNavController()
                     )

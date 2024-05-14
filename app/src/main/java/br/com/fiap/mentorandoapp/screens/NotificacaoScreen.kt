@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,6 +24,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import br.com.fiap.mentorandoapp.components.BottomNavigation
+import br.com.fiap.mentorandoapp.components.LocalStorage
+import br.com.fiap.mentorandoapp.dataBase.repository.MatchRepository
+import br.com.fiap.mentorandoapp.dataBase.repository.NotificationRepository
 import br.com.fiap.mentorandoapp.ui.theme.Verde1
 import br.com.fiap.mentorandoapp.ui.theme.Verde2
 import br.com.fiap.mentorandoapp.ui.theme.Verde4
@@ -30,10 +34,13 @@ import br.com.fiap.mentorandoapp.ui.theme.Verde4
 
 @Composable
 fun NotificacaoScreen(
-    messages: List<String>,
     onClose: () -> Unit,
     navController: NavController
 ) {
+
+    val context = LocalContext.current
+    val notificationRepository = NotificationRepository(context)
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -45,9 +52,12 @@ fun NotificacaoScreen(
                 .verticalScroll(rememberScrollState()), // Adicionando scroll vertical
             verticalArrangement = Arrangement.Top
         ) {
-            messages.forEach { message ->
+            var meu_id = LocalStorage.getFilter("usuario_logado")!![0].toInt()
+            var notifications = notificationRepository.listarNotificacoes(meu_id)
+
+            notifications.forEach { notification ->
                 NotificacaoItem(
-                    message = message,
+                    message = notification.nome + " Contato: " + notification.contato,
                     onClose = onClose
                 )
             }
@@ -118,5 +128,5 @@ fun NotificacaoScreenPreview() {
         "Notificação 3"
     )
 
-    NotificacaoScreen(messages = messages, onClose = {}, navController = rememberNavController())
+    NotificacaoScreen( onClose = {}, navController = rememberNavController())
 }
