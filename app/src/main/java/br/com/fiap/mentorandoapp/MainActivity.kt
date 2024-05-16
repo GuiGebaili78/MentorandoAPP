@@ -84,17 +84,13 @@ fun MentorandoApp() {
                     )
                 }
 
-                composable(route = "MenuScreen") {
-                    MenuScreen(navController)
-                }
+
                 composable(route = "PesquisaUsuarioScreen") {
                     val context = LocalContext.current
                     PesquisaUsuarioScreen(navController = navController, context = context)
                 }
 
-                composable(route = "BuscaScreen") {
-                    BuscaScreen(navController)
-                }
+
             }
         }
     }
